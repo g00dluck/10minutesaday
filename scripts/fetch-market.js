@@ -66,9 +66,13 @@ function num(v) {
   return Number(String(v).replace(/,/g, ""));
 }
 
+// ETF/ETN/리츠 등 개별 기업이 아닌 상품은 히트맵에서 제외
+var NON_STOCK_RE = /^(KODEX|TIGER|KBSTAR|RISE|ACE|SOL|PLUS|KOSEF|HANARO|ARIRANG|KIWOOM|WON|마이다스|에셋플러스)\s|ETN|레버리지|인버스|선물|채권|단기자금|머니마켓|리츠$/i;
+
 /** 시장(KOSPI/KOSDAQ)별 시가총액 상위 종목 목록 */
 async function getTopStocks(market, size) {
   const stocks = [];
+  const seen = new Set();
   const pageSize = Math.min(size, 100);
   for (let page = 1; stocks.length < size; page++) {
     const data = await fetchJson(
@@ -76,7 +80,11 @@ async function getTopStocks(market, size) {
     );
     const list = data && (data.stocks || data.result || []);
     if (!Array.isArray(list) || list.length === 0) break;
+    const seenBefore = seen.size;
     for (const s of list) {
+      if (seen.has(s.itemCode)) continue;
+      seen.add(s.itemCode);
+      if (NON_STOCK_RE.test(String(s.stockName || ""))) continue;
       stocks.push({
         name: s.stockName,
         code: s.itemCode,
@@ -88,34 +96,78 @@ async function getTopStocks(market, size) {
       });
       if (stocks.length >= size) break;
     }
+    if (seen.size === seenBefore) break; // 새 종목이 없으면(페이지 반복) 중단
   }
   return stocks;
 }
 
 /** 응답 객체 어디에 있든 업종명으로 보이는 필드를 찾아낸다 (API 스키마 변화 대비) */
-function pickIndustryName(obj) {
-  if (!obj || typeof obj !== "object") return null;
-  const candidates = [
-    obj.industryCodeType,
-    obj.industryCode,
-    obj.industry,
-    obj.upjong,
-  ];
-  for (const c of candidates) {
-    if (typeof c === "string" && c.trim()) return c.trim();
-    if (c && typeof c === "object") {
-      const name = c.industryGroupKor || c.name || c.korName || c.text;
-      if (typeof name === "string" && name.trim()) return name.trim();
+function pickIndustry(obj, depth) {
+  if (!obj || typeof obj !== "object" || depth > 2) return { name: null, code: null };
+  let code = null;
+
+  const consider = (v) => {
+    if (typeof v !== "string" || !v.trim()) return null;
+    const s = v.trim();
+    if (/^\d+$/.test(s)) {
+      if (!code) code = s; // 숫자만 있으면 업종 코드로 취급
+      return null;
     }
-  }
-  // 깊이 1 안에서 industry* 키 탐색
+    return s;
+  };
+
   for (const key of Object.keys(obj)) {
-    if (/industry/i.test(key)) {
-      const found = pickIndustryName({ industry: obj[key] });
-      if (found) return found;
+    if (!/industry|upjong|sector/i.test(key)) continue;
+    const v = obj[key];
+    const direct = consider(v);
+    if (direct) return { name: direct, code };
+    if (v && typeof v === "object") {
+      for (const f of ["industryGroupKor", "industryGroupName", "industryName", "name", "korName", "text"]) {
+        const found = consider(v[f]);
+        if (found) return { name: found, code };
+      }
+      const nested = pickIndustry(v, (depth || 0) + 1);
+      if (nested.name) return nested;
+      if (!code && nested.code) code = nested.code;
     }
   }
-  return null;
+  return { name: null, code };
+}
+
+/** 네이버 업종 목록 페이지에서 업종코드 → 한글 업종명 매핑을 만든다 (EUC-KR) */
+async function getUpjongMap() {
+  try {
+    const res = await fetch("https://finance.naver.com/sise/sise_group.naver?type=upjong", {
+      headers: HEADERS,
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const buf = await res.arrayBuffer();
+    // 응답 헤더/메타의 charset 선언을 따른다 (이 페이지는 전통적으로 EUC-KR)
+    const ct = (res.headers && res.headers.get && res.headers.get("content-type")) || "";
+    let charset = (ct.match(/charset=([\w-]+)/i) || [])[1];
+    if (!charset) {
+      const head = new TextDecoder("latin1").decode(buf.slice(0, 1024));
+      charset = (head.match(/charset=["']?([\w-]+)/i) || [])[1] || "euc-kr";
+    }
+    let html;
+    try {
+      html = new TextDecoder(charset).decode(buf);
+    } catch (e) {
+      html = new TextDecoder("utf-8").decode(buf);
+    }
+    const map = {};
+    const re = /no=(\d+)[^>]*>([^<]+)</g;
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      const name = m[2].trim();
+      if (name && !/^\d+$/.test(name)) map[m[1]] = name;
+    }
+    console.log(`업종 코드 매핑 ${Object.keys(map).length}건 로드`);
+    return map;
+  } catch (err) {
+    console.warn(`  [warn] 업종 목록 조회 실패: ${err.message}`);
+    return {};
+  }
 }
 
 /** 코스피/코스닥 지수 — 실패해도 전체 수집은 계속한다 */
@@ -140,10 +192,19 @@ async function getIndices() {
   return indices;
 }
 
-async function getIndustry(code) {
+let industryDiagLogged = false;
+
+async function getIndustry(code, upjongMap) {
   try {
     const data = await fetchJson(`${BASE}/stock/${code}/integration`);
-    return pickIndustryName(data) || "기타";
+    const picked = pickIndustry(data, 0);
+    if (picked.name) return picked.name;
+    if (picked.code && upjongMap[picked.code]) return upjongMap[picked.code];
+    if (!industryDiagLogged) {
+      industryDiagLogged = true;
+      console.warn(`  [diag] ${code} 업종 해석 실패 — 응답 형태: ${JSON.stringify(data).slice(0, 500)}`);
+    }
+    return "기타";
   } catch (err) {
     console.warn(`  [warn] ${code} 업종 조회 실패: ${err.message}`);
     return "기타";
@@ -221,7 +282,7 @@ async function main() {
   const opts = parseArgs();
 
   console.log("지수 수집...");
-  const indices = await getIndices();
+  const [indices, upjongMap] = await Promise.all([getIndices(), getUpjongMap()]);
 
   console.log(`KOSPI 상위 ${opts.kospi} / KOSDAQ 상위 ${opts.kosdaq} 종목 수집...`);
   const [kospi, kosdaq] = await Promise.all([
@@ -233,7 +294,7 @@ async function main() {
   console.log(`총 ${all.length}개 종목, 업종 조회 시작...`);
 
   for (const s of all) {
-    s.sector = await getIndustry(s.code);
+    s.sector = await getIndustry(s.code, upjongMap);
     await sleep(120); // API 부하 방지
   }
 
