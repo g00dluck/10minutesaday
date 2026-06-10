@@ -59,6 +59,9 @@ jobs:
           ref: ${{ github.ref }}
 
       - uses: actions/configure-pages@v5
+        with:
+          # 저장소에 Pages가 아직 활성화되지 않았으면 자동 활성화
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
