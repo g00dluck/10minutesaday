@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Minute A Day · 포트폴리오</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">10</span>
+    <h1>10 Minute A Day</h1>
+  </div>
+  <nav class="tabs">
+    <a href="index.html" class="tab">시황</a>
+    <a href="portfolio.html" class="tab active">포트폴리오</a>
+  </nav>
+  <div class="meta">
+    <span id="asof"></span>
+  </div>
+</header>
+
+<main>
+  <div class="page">
+    <h2>내 포트폴리오</h2>
+    <p class="sub">보유 종목은 이 브라우저(localStorage)에만 저장됩니다.</p>
+
+    <div class="summary-cards" id="summary"></div>
+
+    <table class="holdings-table">
+      <thead>
+        <tr>
+          <th>종목</th>
+          <th>수량</th>
+          <th>평균단가</th>
+          <th>현재가</th>
+          <th>평가금액</th>
+          <th>평가손익</th>
+          <th>수익률</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="holdings-body"></tbody>
+    </table>
+
+    <form class="add-form" id="add-form">
+      <div class="field">
+        <label for="f-name">종목명</label>
+        <input id="f-name" required placeholder="삼성전자">
+      </div>
+      <div class="field">
+        <label for="f-qty">수량</label>
+        <input id="f-qty" type="number" min="1" step="1" required placeholder="10">
+      </div>
+      <div class="field">
+        <label for="f-avg">평균단가 (원)</label>
+        <input id="f-avg" type="number" min="0" step="any" required placeholder="72000">
+      </div>
+      <div class="field">
+        <label for="f-cur">현재가 (원)</label>
+        <input id="f-cur" type="number" min="0" step="any" required placeholder="69500">
+      </div>
+      <button type="submit">추가</button>
+    </form>
+  </div>
+</main>
+
+<script src="assets/js/portfolio.js"></script>
+</body>
+</html>

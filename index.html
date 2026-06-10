@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Minute A Day · 시황</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">10</span>
+    <h1>10 Minute A Day</h1>
+  </div>
+  <nav class="tabs">
+    <a href="index.html" class="tab active">시황</a>
+    <a href="portfolio.html" class="tab">포트폴리오</a>
+  </nav>
+  <div class="meta">
+    <span id="asof"></span>
+  </div>
+</header>
+
+<main>
+  <section class="heatmap-wrap">
+    <div id="heatmap" class="heatmap" aria-label="업종별 등락 히트맵"></div>
+    <div class="legend">
+      <span class="legend-label">하락</span>
+      <div class="legend-swatches" id="legend-swatches"></div>
+      <span class="legend-label">상승</span>
+      <span class="legend-mid">보합</span>
+    </div>
+  </section>
+</main>
+
+<div id="tooltip" class="tooltip" hidden></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/heatmap.js"></script>
+</body>
+</html>
