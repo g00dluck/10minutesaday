@@ -21,7 +21,7 @@
     linkToss: document.getElementById("d-link-toss")
   };
 
-  var UP = "#ff6b61", DOWN = "#6e9bff", FLAT = "#8a90a0";
+  var UP = "#d93a31", DOWN = "#2f6be0", FLAT = "#8a90a0";
 
   function changeColorOf(change) {
     return change > 0 ? UP : change < 0 ? DOWN : FLAT;

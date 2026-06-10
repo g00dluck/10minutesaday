@@ -1,12 +1,12 @@
 :root {
-  color-scheme: dark;
-  --bg: #0e1015;
-  --panel: #161922;
-  --line: #232733;
-  --text: #e8eaf0;
-  --text-dim: #8a90a0;
+  color-scheme: light;
+  --bg: #ffffff;
+  --panel: #f7f8fa;
+  --line: #e4e7ee;
+  --text: #1a1d26;
+  --text-dim: #7a8094;
   --up: #e5443c;
-  --down: #4880ee;
+  --down: #3b6ce0;
   --flat: #3f4756;
 }
 
@@ -59,8 +59,8 @@ body {
   font-weight: 600;
 }
 
-.tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.05); }
-.tab.active { color: var(--text); background: rgba(255, 255, 255, 0.09); }
+.tab:hover { color: var(--text); background: rgba(0, 0, 0, 0.04); }
+.tab.active { color: var(--text); background: rgba(0, 0, 0, 0.07); }
 
 .meta { margin-left: auto; font-size: 12px; color: var(--text-dim); }
 
@@ -90,19 +90,19 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .index-card .ix-name { font-size: 12px; color: var(--text-dim); font-weight: 600; }
 .index-card .ix-value { font-size: 16px; font-weight: 800; }
 .index-card .ix-change { font-size: 12px; font-weight: 700; }
-.ix-change.up { color: #ff6b61; }
-.ix-change.down { color: #6e9bff; }
+.ix-change.up { color: #d93a31; }
+.ix-change.down { color: #2f6be0; }
 
 .heatmap {
   position: relative;
   flex: 1;
   min-height: 480px;
-  background: #000;
+  background: var(--bg);
 }
 
 .sector {
   position: absolute;
-  background: #000;
+  background: var(--bg);
   overflow: hidden;
 }
 
@@ -113,8 +113,8 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   align-items: center;
   gap: 6px;
   padding: 0 6px;
-  background: #20242e;
-  color: #cfd3dd;
+  background: #eef0f5;
+  color: #3c4254;
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
@@ -129,7 +129,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   min-width: 16px; height: 16px;
   padding: 0 3px;
   border-radius: 3px;
-  background: #3a4150;
+  background: #6b7280;
   color: #fff;
   font-size: 10px;
   font-weight: 800;
@@ -143,7 +143,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   cursor: pointer;
   transition: filter 0.1s ease;
 }
@@ -198,19 +198,19 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   position: fixed;
   z-index: 10;
   pointer-events: none;
-  background: rgba(22, 25, 34, 0.96);
+  background: rgba(255, 255, 255, 0.98);
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 8px 12px;
   font-size: 12px;
   line-height: 1.6;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 20px rgba(30, 35, 50, 0.14);
 }
 
 .tooltip .tt-sector { color: var(--text-dim); font-size: 11px; }
 .tooltip .tt-name { font-weight: 700; font-size: 13px; }
-.tooltip .tt-up { color: #ff6b61; font-weight: 700; }
-.tooltip .tt-down { color: #6e9bff; font-weight: 700; }
+.tooltip .tt-up { color: #d93a31; font-weight: 700; }
+.tooltip .tt-down { color: #2f6be0; font-weight: 700; }
 .tooltip .tt-flat { color: var(--text-dim); font-weight: 700; }
 
 /* ---------- portfolio ---------- */
@@ -239,8 +239,8 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
 .card .label { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
 .card .value { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
-.value.up { color: #ff6b61; }
-.value.down { color: #6e9bff; }
+.value.up { color: #d93a31; }
+.value.down { color: #2f6be0; }
 
 .holdings-table {
   width: 100%;
@@ -258,8 +258,8 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
 .holdings-table th { color: var(--text-dim); font-weight: 600; font-size: 12px; }
 .holdings-table th:first-child, .holdings-table td:first-child { text-align: left; }
-.holdings-table td.up { color: #ff6b61; }
-.holdings-table td.down { color: #6e9bff; }
+.holdings-table td.up { color: #d93a31; }
+.holdings-table td.down { color: #2f6be0; }
 
 .holdings-table .del-btn {
   background: none;
@@ -270,7 +270,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   cursor: pointer;
   font-size: 12px;
 }
-.holdings-table .del-btn:hover { color: #ff6b61; border-color: #ff6b61; }
+.holdings-table .del-btn:hover { color: #d93a31; border-color: #d93a31; }
 
 .add-form {
   display: flex;
@@ -344,7 +344,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 }
 .sync-btn:hover { color: var(--text); border-color: var(--down); }
 
-.sync-note { margin-left: 8px; font-size: 12px; color: #6e9bff; }
+.sync-note { margin-left: 8px; font-size: 12px; color: #2f6be0; }
 
 /* ---------- 자산 비중 차트 ---------- */
 .chart-card { margin-bottom: 24px; }
@@ -374,7 +374,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   position: fixed;
   inset: 0;
   z-index: 20;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(20, 24, 35, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,7 +393,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 22px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 18px 60px rgba(30, 35, 50, 0.22);
 }
 
 .detail-close {
@@ -431,7 +431,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   width: 100%;
   height: 180px;
   display: block;
-  background: rgba(0, 0, 0, 0.25);
+  background: #f5f7fa;
   border-radius: 10px;
 }
 
@@ -483,7 +483,7 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   font-size: 13px;
   font-weight: 700;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.03);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 11px 14px;
