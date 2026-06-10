@@ -3,7 +3,7 @@ name: Update market data & deploy
 on:
   schedule:
     # 매일 08:00–19:55 KST, 5분 간격 (KST = UTC+9 → UTC 23:00–10:55)
-    - cron: "*/5 23,0-10 * * *"
+    - cron: "*/5 0-10,23 * * *"
     # 매일 20:00 KST (11:00 UTC) 마지막 갱신
     - cron: "0 11 * * *"
   workflow_dispatch:
