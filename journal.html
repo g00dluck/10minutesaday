@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Minute A Day · 매매일지</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">10</span>
+    <h1>10 Minute A Day</h1>
+  </div>
+  <nav class="tabs">
+    <a href="index.html" class="tab">시황</a>
+    <a href="portfolio.html" class="tab">포트폴리오</a>
+    <a href="journal.html" class="tab active">매매일지</a>
+  </nav>
+  <div class="meta">
+    <span id="asof"></span>
+  </div>
+</header>
+
+<main>
+  <div class="page">
+    <h2>매매일지</h2>
+    <p class="sub">기록은 이 브라우저(localStorage)에만 저장됩니다.</p>
+
+    <div class="summary-cards" id="summary"></div>
+
+    <table class="holdings-table">
+      <thead>
+        <tr>
+          <th>일자</th>
+          <th>종목</th>
+          <th>구분</th>
+          <th>수량</th>
+          <th>단가</th>
+          <th>금액</th>
+          <th>메모</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="journal-body"></tbody>
+    </table>
+
+    <form class="add-form" id="add-form">
+      <div class="field">
+        <label for="f-date">일자</label>
+        <input id="f-date" type="date" required>
+      </div>
+      <div class="field">
+        <label for="f-name">종목명</label>
+        <input id="f-name" required placeholder="삼성전자" list="stock-names">
+        <datalist id="stock-names"></datalist>
+      </div>
+      <div class="field">
+        <label for="f-side">구분</label>
+        <select id="f-side">
+          <option value="buy">매수</option>
+          <option value="sell">매도</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="f-qty">수량</label>
+        <input id="f-qty" type="number" min="1" step="1" required placeholder="10">
+      </div>
+      <div class="field">
+        <label for="f-price">단가 (원)</label>
+        <input id="f-price" type="number" min="0" step="any" required placeholder="72000">
+      </div>
+      <div class="field memo-field">
+        <label for="f-memo">메모</label>
+        <input id="f-memo" placeholder="매수/매도 이유를 한 줄로">
+      </div>
+      <button type="submit">기록</button>
+    </form>
+  </div>
+</main>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/journal.js"></script>
+</body>
+</html>

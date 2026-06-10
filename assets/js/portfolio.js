@@ -82,6 +82,62 @@
       card("총 평가금액", fmtWon(totalValue), "") +
       card("평가손익", fmtWon(totalPl), signClass(totalPl)) +
       card("수익률", fmtPct(totalRate), signClass(totalRate));
+
+    renderChart(holdings, totalValue);
+  }
+
+  /* ---------- 자산 비중 도넛 차트 ---------- */
+
+  var CHART_COLORS = [
+    "#4880ee", "#e5443c", "#f2a93b", "#3bbf8a", "#9b6ef3",
+    "#e96fae", "#5bc8e8", "#aab84c", "#d98452", "#7a86a8"
+  ];
+
+  function renderChart(holdings, totalValue) {
+    var chartCard = document.getElementById("chart-card");
+    var svg = document.getElementById("donut");
+    var legend = document.getElementById("chart-legend");
+
+    if (holdings.length === 0 || totalValue <= 0) {
+      chartCard.hidden = true;
+      return;
+    }
+    chartCard.hidden = false;
+    svg.innerHTML = "";
+    legend.innerHTML = "";
+
+    // 평가금액 큰 순서로 정렬
+    var items = holdings
+      .map(function (h) { return { name: h.name, value: h.qty * h.curPrice }; })
+      .filter(function (it) { return it.value > 0; })
+      .sort(function (a, b) { return b.value - a.value; });
+
+    var R = 60, CX = 80, CY = 80;
+    var C = 2 * Math.PI * R;
+    var offset = C / 4; // 12시 방향에서 시작
+
+    items.forEach(function (it, i) {
+      var frac = it.value / totalValue;
+      var len = frac * C;
+      var seg = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      seg.setAttribute("cx", CX);
+      seg.setAttribute("cy", CY);
+      seg.setAttribute("r", R);
+      seg.setAttribute("fill", "none");
+      seg.setAttribute("stroke", CHART_COLORS[i % CHART_COLORS.length]);
+      seg.setAttribute("stroke-width", 26);
+      seg.setAttribute("stroke-dasharray", Math.max(0, len - 1.5) + " " + (C - len + 1.5));
+      seg.setAttribute("stroke-dashoffset", offset);
+      svg.appendChild(seg);
+      offset -= len;
+
+      var li = document.createElement("li");
+      li.innerHTML =
+        '<span class="dot" style="background:' + CHART_COLORS[i % CHART_COLORS.length] + '"></span>' +
+        "<span>" + escapeHtml(it.name) + "</span>" +
+        '<span class="pct">' + (frac * 100).toFixed(1) + "%</span>";
+      legend.appendChild(li);
+    });
   }
 
   function card(label, value, cls) {

@@ -6,8 +6,9 @@
 
 | 페이지 | 파일 | 설명 |
 |---|---|---|
-| 시황 (첫 페이지) | `index.html` | 업종별 등락 히트맵(트리맵). 업종 순위 → 종목을 시가총액 비례 면적으로 표시, 등락률에 따라 파랑(하락)~빨강(상승) 색상 |
-| 포트폴리오 | `portfolio.html` | 보유 종목·평가손익·수익률. localStorage에 저장 |
+| 시황 (첫 페이지) | `index.html` | 코스피/코스닥 지수 요약 + 업종별 등락 히트맵(트리맵). 업종 순위 → 종목을 시가총액 비례 면적으로 표시, 등락률에 따라 파랑(하락)~빨강(상승) 색상 |
+| 포트폴리오 | `portfolio.html` | 보유 종목·평가손익·수익률·자산 비중 차트. localStorage에 저장, 시황 데이터로 현재가 자동 연동 |
+| 매매일지 | `journal.html` | 매수/매도 기록과 메모. localStorage에 저장 |
 
 ## 기술 스택
 
@@ -18,13 +19,15 @@
 ```
 index.html            시황 히트맵 (첫 페이지)
 portfolio.html        포트폴리오
+journal.html          매매일지
 assets/
-  css/style.css       공통 스타일 (다크 테마)
-  js/data.js          시황 데이터 (업종/종목/등락률/현재가/가중치) — 스크립트가 재생성
-  js/heatmap.js       트리맵 레이아웃 + 렌더링 + 툴팁/범례
-  js/portfolio.js     보유 종목 CRUD + 손익 계산 + 현재가 자동 연동
+  css/style.css       공통 스타일 (다크 테마, 모바일 대응)
+  js/data.js          시황 데이터 (지수/업종/종목/등락률/현재가) — 스크립트가 재생성
+  js/heatmap.js       트리맵 레이아웃 + 렌더링 + 지수 카드/툴팁/범례
+  js/portfolio.js     보유 종목 CRUD + 손익 계산 + 자산 비중 차트 + 현재가 연동
+  js/journal.js       매매 기록 CRUD
 scripts/
-  fetch-market.js     네이버 증권 API에서 시세 수집 → data.js 재생성
+  fetch-market.js     네이버 증권 API에서 지수·시세 수집 → data.js 재생성
 .github/workflows/
   update-market-data.yml  평일 장 마감 후 데이터 갱신 + GitHub Pages 배포
 ```
@@ -62,4 +65,16 @@ GitHub Actions(`update-market-data.yml`)가 **평일 15:50 KST**(장 마감 후)
 
 - [x] 1단계 — 시황 히트맵 + 포트폴리오(localStorage)
 - [x] 2단계 — 데이터 자동 수집(GitHub Actions) + Pages 배포 + 포트폴리오 현재가 자동 연동
-- [ ] 3단계 — 증권사 OpenAPI(한국투자증권 등) 실시간 연동, 매매 일지, 자산 비중 차트
+- [x] 3단계 — 지수 요약 카드, 자산 비중 도넛 차트, 매매일지, 모바일 대응
+- [ ] 확장(선택) — 증권사 OpenAPI 실시간 연동
+
+### 증권사 OpenAPI 실시간 연동 (선택, API 키 필요)
+
+한국투자증권 등 증권사 OpenAPI로 실시간 시세를 쓰려면 사용자 명의의 appkey/secret이 필요하다.
+연동 시 수정 지점:
+
+- `scripts/fetch-market.js` — 네이버 API 호출부를 OpenAPI 호출로 교체(또는 병행).
+  키는 GitHub Actions Secrets(`Settings → Secrets and variables → Actions`)에 저장하고
+  워크플로우에서 환경 변수로 주입
+- 실시간(장중) 갱신이 필요하면 워크플로우 cron을 장중 10분 간격 등으로 조정
+  (정적 사이트 구조는 그대로 유지된다)

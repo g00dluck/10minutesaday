@@ -1,4 +1,5 @@
 :root {
+  color-scheme: dark;
   --bg: #0e1015;
   --panel: #161922;
   --line: #232733;
@@ -73,6 +74,24 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   padding: 10px;
   min-height: 0;
 }
+
+.indices { display: flex; gap: 8px; padding-bottom: 10px; flex-wrap: wrap; }
+
+.index-card {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 14px;
+}
+
+.index-card .ix-name { font-size: 12px; color: var(--text-dim); font-weight: 600; }
+.index-card .ix-value { font-size: 16px; font-weight: 800; }
+.index-card .ix-change { font-size: 12px; font-weight: 700; }
+.ix-change.up { color: #ff6b61; }
+.ix-change.down { color: #6e9bff; }
 
 .heatmap {
   position: relative;
@@ -160,6 +179,8 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
   font-size: 12px;
   color: var(--text-dim);
 }
+
+.legend-label { white-space: nowrap; }
 
 .legend-swatches { display: flex; gap: 3px; position: relative; }
 
@@ -277,6 +298,25 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 
 .add-form input:focus { outline: none; border-color: var(--down); }
 
+.add-form select {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 8px 10px;
+  font-size: 13px;
+}
+
+.add-form .memo-field { flex: 1; min-width: 180px; }
+.add-form .memo-field input { width: 100%; }
+
+.holdings-table td.memo {
+  text-align: left;
+  color: var(--text-dim);
+  white-space: normal;
+  max-width: 280px;
+}
+
 .add-form button {
   background: var(--down);
   color: #fff;
@@ -305,3 +345,43 @@ main { flex: 1; display: flex; flex-direction: column; min-height: 0; }
 .sync-btn:hover { color: var(--text); border-color: var(--down); }
 
 .sync-note { margin-left: 8px; font-size: 12px; color: #6e9bff; }
+
+/* ---------- 자산 비중 차트 ---------- */
+.chart-card { margin-bottom: 24px; }
+
+.chart-row { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+
+.chart-legend {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.chart-legend li { display: flex; align-items: center; gap: 8px; }
+
+.chart-legend .dot {
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.chart-legend .pct { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+/* ---------- 모바일 ---------- */
+@media (max-width: 720px) {
+  .site-header { flex-wrap: wrap; gap: 10px 16px; padding: 10px 14px; }
+  .meta { margin-left: 0; width: 100%; order: 3; }
+
+  .heatmap { min-height: 540px; }
+  .heatmap-wrap { padding: 8px; }
+
+  .page { padding: 16px 12px 48px; }
+
+  /* 좁은 화면에서 표는 가로 스크롤 */
+  .holdings-table { display: block; overflow-x: auto; }
+
+  .add-form input { width: 110px; }
+  .chart-row { gap: 16px; }
+}

@@ -115,6 +115,28 @@ function pickIndustryName(obj) {
   return null;
 }
 
+/** 코스피/코스닥 지수 — 실패해도 전체 수집은 계속한다 */
+async function getIndices() {
+  var targets = [
+    { api: "KOSPI", name: "코스피" },
+    { api: "KOSDAQ", name: "코스닥" },
+  ];
+  var indices = [];
+  for (const t of targets) {
+    try {
+      const data = await fetchJson(`${BASE}/index/${t.api}/basic`);
+      const value = num(data.closePrice);
+      const change = num(data.fluctuationsRatio);
+      if (Number.isFinite(value)) {
+        indices.push({ name: t.name, value, change: Number.isFinite(change) ? change : 0 });
+      }
+    } catch (err) {
+      console.warn(`  [warn] ${t.api} 지수 조회 실패: ${err.message}`);
+    }
+  }
+  return indices;
+}
+
 async function getIndustry(code) {
   try {
     const data = await fetchJson(`${BASE}/stock/${code}/integration`);
@@ -125,7 +147,7 @@ async function getIndustry(code) {
   }
 }
 
-function buildDataJs(sectors, asOf) {
+function buildDataJs(payload) {
   const lines = [];
   lines.push("/**");
   lines.push(" * 시황 데이터 — scripts/fetch-market.js 가 자동 생성하는 파일. 직접 수정하지 말 것.");
@@ -135,7 +157,7 @@ function buildDataJs(sectors, asOf) {
   lines.push(" * - change : 전일 대비 등락률(%)");
   lines.push(" * - price  : 현재가(원)");
   lines.push(" */");
-  lines.push("var MARKET_DATA = " + JSON.stringify({ asOf, sectors }, null, 2) + ";");
+  lines.push("var MARKET_DATA = " + JSON.stringify(payload, null, 2) + ";");
   return lines.join("\n") + "\n";
 }
 
@@ -146,6 +168,9 @@ function nowKst() {
 
 async function main() {
   const opts = parseArgs();
+
+  console.log("지수 수집...");
+  const indices = await getIndices();
 
   console.log(`KOSPI 상위 ${opts.kospi} / KOSDAQ 상위 ${opts.kosdaq} 종목 수집...`);
   const [kospi, kosdaq] = [
@@ -193,7 +218,7 @@ async function main() {
       })),
   }));
 
-  const content = buildDataJs(sectors, nowKst());
+  const content = buildDataJs({ asOf: nowKst(), indices, sectors });
 
   if (opts.dryRun) {
     console.log(content);

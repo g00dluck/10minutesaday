@@ -15,6 +15,7 @@
   <nav class="tabs">
     <a href="index.html" class="tab">시황</a>
     <a href="portfolio.html" class="tab active">포트폴리오</a>
+    <a href="journal.html" class="tab">매매일지</a>
   </nav>
   <div class="meta">
     <span id="asof"></span>
@@ -31,6 +32,14 @@
     </p>
 
     <div class="summary-cards" id="summary"></div>
+
+    <div class="card chart-card" id="chart-card" hidden>
+      <div class="label">자산 비중 (평가금액 기준)</div>
+      <div class="chart-row">
+        <svg id="donut" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="자산 비중 도넛 차트"></svg>
+        <ul class="chart-legend" id="chart-legend"></ul>
+      </div>
+    </div>
 
     <table class="holdings-table">
       <thead>

@@ -12,6 +12,10 @@
  */
 var MARKET_DATA = {
   asOf: "2026-06-09 15:30 KST (샘플)",
+  indices: [
+    { name: "코스피", value: 2745.32, change: -1.82 },
+    { name: "코스닥", value: 845.1, change: -2.31 }
+  ],
   sectors: [
     {
       rank: 1,

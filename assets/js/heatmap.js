@@ -219,9 +219,27 @@
     }
   }
 
+  /* ---------- 지수 요약 ---------- */
+
+  function renderIndices() {
+    var wrap = document.getElementById("indices");
+    if (!wrap || !MARKET_DATA.indices) return;
+    MARKET_DATA.indices.forEach(function (idx) {
+      var cls = idx.change > 0 ? "up" : idx.change < 0 ? "down" : "";
+      var card = document.createElement("div");
+      card.className = "index-card";
+      card.innerHTML =
+        '<span class="ix-name">' + idx.name + "</span>" +
+        '<span class="ix-value">' + idx.value.toLocaleString("ko-KR", { minimumFractionDigits: 2 }) + "</span>" +
+        '<span class="ix-change ' + cls + '">' + formatChange(idx.change) + "</span>";
+      wrap.appendChild(card);
+    });
+  }
+
   /* ---------- init ---------- */
 
   document.getElementById("asof").textContent = "기준: " + MARKET_DATA.asOf;
+  renderIndices();
   renderLegend();
   render();
 
