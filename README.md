@@ -31,7 +31,7 @@ assets/
 scripts/
   fetch-market.js     네이버 증권 API에서 지수·시세·일별 종가 수집 → data.js 재생성
 .github/workflows/
-  update-market-data.yml  매일 08~20시 KST 5분 간격 데이터 갱신 + GitHub Pages 배포
+  market-data.yml       매일 08~20시 KST 5분 간격 데이터 갱신 + GitHub Pages 배포
 ```
 
 ## 시황 히트맵 동작 방식
@@ -56,7 +56,7 @@ node scripts/fetch-market.js --kospi 100 --kosdaq 50 --sectors 12 --top 8 --hist
 업종 분류 실패가 과반이면(API 스키마 변경 신호) 스크립트가 실패해 Actions 알림이 가고,
 기존 데이터가 유지된다. 종목 상세 차트용 일별 종가는 화면에 표시되는 종목만 수집한다.
 
-GitHub Actions(`update-market-data.yml`)가 **매일 08:00~20:00 KST, 5분 간격**으로 자동 실행되어
+GitHub Actions(`market-data.yml`)가 **매일 08:00~20:00 KST, 5분 간격**으로 자동 실행되어
 데이터 변경이 있을 때만 커밋하고 GitHub Pages에 배포한다. 수동 실행은 Actions 탭 → Run workflow.
 GitHub 스케줄 특성상 실행이 몇 분 지연되거나 일부 회차가 건너뛰어질 수 있다.
 
