@@ -11,6 +11,7 @@
  *   --kosdaq N   KOSDAQ 시총 상위 N개 수집 (기본 40)
  *   --sectors N  표시할 업종 수 (기본 12)
  *   --top N      업종당 최대 종목 수 (기본 8)
+ *   --history N  종목당 최근 N일 일별 종가 수집 (기본 30, 0이면 생략)
  *   --dry-run    파일을 쓰지 않고 결과만 출력
  *
  * Node 18+ (내장 fetch) 필요, 외부 의존성 없음.
@@ -30,13 +31,14 @@ const HEADERS = {
 
 function parseArgs() {
   const args = process.argv.slice(2);
-  const opts = { kospi: 80, kosdaq: 40, sectors: 12, top: 8, dryRun: false };
+  const opts = { kospi: 80, kosdaq: 40, sectors: 12, top: 8, history: 30, dryRun: false };
   for (let i = 0; i < args.length; i++) {
     if (args[i] === "--dry-run") opts.dryRun = true;
     else if (args[i] === "--kospi") opts.kospi = Number(args[++i]);
     else if (args[i] === "--kosdaq") opts.kosdaq = Number(args[++i]);
     else if (args[i] === "--sectors") opts.sectors = Number(args[++i]);
     else if (args[i] === "--top") opts.top = Number(args[++i]);
+    else if (args[i] === "--history") opts.history = Number(args[++i]);
   }
   return opts;
 }
@@ -81,6 +83,7 @@ async function getTopStocks(market, size) {
         price: num(s.closePrice),
         change: num(s.fluctuationsRatio),
         marketValue: num(s.marketValue), // 억원
+        volume: num(s.accumulatedTradingVolume),
         market,
       });
       if (stocks.length >= size) break;
@@ -147,6 +150,54 @@ async function getIndustry(code) {
   }
 }
 
+/* ---------- 일별 시세 (종목 상세 차트용) ---------- */
+
+// 응답 어딘가의 배열에서 {일자, 종가} 목록을 찾아낸다 (스키마 변화 대비)
+function pickDailyCloses(data, days) {
+  const arrays = [];
+  if (Array.isArray(data)) arrays.push(data);
+  else if (data && typeof data === "object") {
+    for (const key of Object.keys(data)) {
+      if (Array.isArray(data[key])) arrays.push(data[key]);
+    }
+  }
+  for (const arr of arrays) {
+    const points = arr
+      .map((it) => {
+        if (!it || typeof it !== "object") return null;
+        const date = it.localDate || it.localTradedAt || it.dt || it.date;
+        const close = num(it.closePrice != null ? it.closePrice : it.close);
+        if (!date || !Number.isFinite(close)) return null;
+        // '20260610' / '2026-06-10' / '2026-06-10T...' → 'YYYY-MM-DD'
+        const d = String(date).replace(/T.*$/, "").replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3");
+        return { d, c: close };
+      })
+      .filter(Boolean);
+    if (points.length >= 2) {
+      points.sort((a, b) => (a.d < b.d ? -1 : a.d > b.d ? 1 : 0));
+      return points.slice(-days);
+    }
+  }
+  return null;
+}
+
+async function getDailyHistory(code, days) {
+  const candidates = [
+    `https://api.stock.naver.com/chart/domestic/item/${code}/day?stockExchangeType=KRX`,
+    `${BASE}/stock/${code}/price?pageSize=${days}&page=1`,
+  ];
+  for (const url of candidates) {
+    try {
+      const data = await fetchJson(url, 1);
+      const points = pickDailyCloses(data, days);
+      if (points) return points;
+    } catch (err) {
+      // 다음 후보 엔드포인트 시도
+    }
+  }
+  return null;
+}
+
 function buildDataJs(payload) {
   const lines = [];
   lines.push("/**");
@@ -173,10 +224,10 @@ async function main() {
   const indices = await getIndices();
 
   console.log(`KOSPI 상위 ${opts.kospi} / KOSDAQ 상위 ${opts.kosdaq} 종목 수집...`);
-  const [kospi, kosdaq] = [
-    await getTopStocks("KOSPI", opts.kospi),
-    await getTopStocks("KOSDAQ", opts.kosdaq),
-  ];
+  const [kospi, kosdaq] = await Promise.all([
+    getTopStocks("KOSPI", opts.kospi),
+    getTopStocks("KOSDAQ", opts.kosdaq),
+  ]);
   const all = kospi.concat(kosdaq).filter((s) => s.code && s.name);
   if (all.length === 0) throw new Error("종목 목록이 비어 있음 — API 응답 형식 확인 필요");
   console.log(`총 ${all.length}개 종목, 업종 조회 시작...`);
@@ -184,6 +235,13 @@ async function main() {
   for (const s of all) {
     s.sector = await getIndustry(s.code);
     await sleep(120); // API 부하 방지
+  }
+
+  // 업종 분류 실패('기타')가 과반이면 API 스키마가 바뀐 것 — 조용히 망가진 데이터를
+  // 배포하는 대신 실패시켜 Actions 알림이 가게 한다
+  const unknown = all.filter((s) => s.sector === "기타").length;
+  if (unknown > all.length * 0.5) {
+    throw new Error(`업종 분류 실패 비율이 너무 높음 (${unknown}/${all.length}) — API 응답 형식 확인 필요`);
   }
 
   // 업종별 그룹핑 → 시총 합 기준 상위 N개 업종
@@ -215,8 +273,25 @@ async function main() {
         weight: s.marketValue || 1,
         change: Number.isFinite(s.change) ? s.change : 0,
         price: Number.isFinite(s.price) ? s.price : null,
+        volume: Number.isFinite(s.volume) ? s.volume : null,
       })),
   }));
+
+  // 화면에 표시될 종목만 일별 시세 수집 (상세 패널 차트용)
+  if (opts.history > 0) {
+    const shown = sectors.flatMap((sec) => sec.stocks);
+    console.log(`${shown.length}개 표시 종목의 최근 ${opts.history}일 시세 수집...`);
+    let ok = 0;
+    for (const s of shown) {
+      const history = await getDailyHistory(s.code, opts.history);
+      if (history) {
+        s.history = history;
+        ok++;
+      }
+      await sleep(120);
+    }
+    console.log(`  시세 수집 성공 ${ok}/${shown.length}`);
+  }
 
   const content = buildDataJs({ asOf: nowKst(), indices, sectors });
 

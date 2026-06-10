@@ -2,6 +2,12 @@
 (function () {
   "use strict";
 
+  if (typeof MARKET_DATA === "undefined") {
+    document.getElementById("heatmap").innerHTML =
+      '<div class="empty-note" style="padding:40px">시황 데이터(assets/js/data.js)를 불러오지 못했습니다.</div>';
+    return;
+  }
+
   var SECTOR_GAP = 3;      // 업종 블록 사이 간격(px)
   var HEADER_H = 22;       // 업종 헤더 높이(px)
   var CLAMP = 3;           // 등락률 색상 포화 한계(±%)
@@ -86,9 +92,13 @@
 
   /* ---------- rendering ---------- */
 
-  function formatChange(change) {
-    return (change > 0 ? "+" : "") + change.toFixed(2) + "%";
+  // 잘못된 weight(음수/NaN)가 들어와도 레이아웃이 깨지지 않게 0으로 보정
+  function tileWeight(stock) {
+    var w = Number(stock.weight);
+    return Number.isFinite(w) && w > 0 ? w : 0;
   }
+
+  var formatChange = TMAD.fmtPct;
 
   function makeTile(stock, sectorName, rect) {
     var tile = document.createElement("div");
@@ -118,6 +128,10 @@
 
     tile.addEventListener("mousemove", function (e) { showTooltip(e, stock, sectorName); });
     tile.addEventListener("mouseleave", hideTooltip);
+    tile.addEventListener("click", function () {
+      hideTooltip();
+      if (window.TMAD_DETAIL) window.TMAD_DETAIL.open(stock, sectorName);
+    });
     return tile;
   }
 
@@ -131,7 +145,7 @@
 
     var sectors = MARKET_DATA.sectors.slice().sort(function (a, b) { return a.rank - b.rank; });
     var sectorWeights = sectors.map(function (s) {
-      return s.stocks.reduce(function (sum, st) { return sum + st.weight; }, 0);
+      return s.stocks.reduce(function (sum, st) { return sum + tileWeight(st); }, 0);
     });
 
     var sectorRects = layoutTreemap(sectorWeights, 0, 0, W, H);
@@ -162,9 +176,9 @@
         box.appendChild(header);
       }
 
-      var stocks = sector.stocks.slice().sort(function (a, b) { return b.weight - a.weight; });
+      var stocks = sector.stocks.slice().sort(function (a, b) { return tileWeight(b) - tileWeight(a); });
       var stockRects = layoutTreemap(
-        stocks.map(function (s) { return s.weight; }),
+        stocks.map(tileWeight),
         0, headerH, innerW, innerH
       );
 
@@ -186,8 +200,9 @@
       ? '<div>' + stock.price.toLocaleString("ko-KR") + "원</div>"
       : "";
     tooltip.innerHTML =
-      '<div class="tt-sector">' + sectorName + "</div>" +
-      '<div class="tt-name">' + stock.name + " <span class='tt-sector'>" + stock.code + "</span></div>" +
+      '<div class="tt-sector">' + TMAD.escapeHtml(sectorName) + "</div>" +
+      '<div class="tt-name">' + TMAD.escapeHtml(stock.name) +
+      " <span class='tt-sector'>" + TMAD.escapeHtml(stock.code) + "</span></div>" +
       priceLine +
       '<div class="' + cls + '">' + formatChange(stock.change) + "</div>";
     tooltip.hidden = false;
@@ -229,7 +244,7 @@
       var card = document.createElement("div");
       card.className = "index-card";
       card.innerHTML =
-        '<span class="ix-name">' + idx.name + "</span>" +
+        '<span class="ix-name">' + TMAD.escapeHtml(idx.name) + "</span>" +
         '<span class="ix-value">' + idx.value.toLocaleString("ko-KR", { minimumFractionDigits: 2 }) + "</span>" +
         '<span class="ix-change ' + cls + '">' + formatChange(idx.change) + "</span>";
       wrap.appendChild(card);
