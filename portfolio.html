@@ -24,7 +24,11 @@
 <main>
   <div class="page">
     <h2>내 포트폴리오</h2>
-    <p class="sub">보유 종목은 이 브라우저(localStorage)에만 저장됩니다.</p>
+    <p class="sub">
+      보유 종목은 이 브라우저(localStorage)에만 저장됩니다.
+      <button type="button" id="sync-btn" class="sync-btn">시황 데이터로 현재가 갱신</button>
+      <span id="sync-note" class="sync-note"></span>
+    </p>
 
     <div class="summary-cards" id="summary"></div>
 
@@ -47,7 +51,8 @@
     <form class="add-form" id="add-form">
       <div class="field">
         <label for="f-name">종목명</label>
-        <input id="f-name" required placeholder="삼성전자">
+        <input id="f-name" required placeholder="삼성전자" list="stock-names">
+        <datalist id="stock-names"></datalist>
       </div>
       <div class="field">
         <label for="f-qty">수량</label>
@@ -66,6 +71,7 @@
   </div>
 </main>
 
+<script src="assets/js/data.js"></script>
 <script src="assets/js/portfolio.js"></script>
 </body>
 </html>

@@ -20,9 +20,13 @@ index.html            시황 히트맵 (첫 페이지)
 portfolio.html        포트폴리오
 assets/
   css/style.css       공통 스타일 (다크 테마)
-  js/data.js          시황 데이터 스냅샷 (업종/종목/등락률/가중치)
+  js/data.js          시황 데이터 (업종/종목/등락률/현재가/가중치) — 스크립트가 재생성
   js/heatmap.js       트리맵 레이아웃 + 렌더링 + 툴팁/범례
-  js/portfolio.js     보유 종목 CRUD + 손익 계산
+  js/portfolio.js     보유 종목 CRUD + 손익 계산 + 현재가 자동 연동
+scripts/
+  fetch-market.js     네이버 증권 API에서 시세 수집 → data.js 재생성
+.github/workflows/
+  update-market-data.yml  평일 장 마감 후 데이터 갱신 + GitHub Pages 배포
 ```
 
 ## 시황 히트맵 동작 방식
@@ -32,16 +36,30 @@ assets/
 3. 타일 색상은 등락률 ±3%에서 포화되는 선형 보간: 하락 `#4880ee` ← 보합 `#3f4756` → 상승 `#e5443c` (국내 관례: 상승=빨강)
 4. 타일 크기에 따라 글자 크기 자동 조절, 작은 타일은 텍스트 생략(툴팁으로 확인)
 
-## 데이터 갱신 (로드맵)
+## 데이터 갱신
 
-현재는 `assets/js/data.js`의 정적 스냅샷을 사용한다. 단계별 계획:
+`scripts/fetch-market.js`가 네이버 증권(비공식 API)에서 KOSPI/KOSDAQ 시가총액 상위 종목과
+업종 정보를 수집해 `assets/js/data.js`를 재생성한다.
 
-1. **1단계 (현재)** — 수동 스냅샷. 파일만 갱신하면 화면에 반영
-2. **2단계** — 수집 스크립트: Node 스크립트로 네이버 증권/KRX 정보데이터시스템에서 업종·종목 시세를 받아 `data.js` 재생성, GitHub Actions 스케줄로 자동 커밋
-3. **3단계** — 증권사 OpenAPI(한국투자증권 등) 연동으로 실시간화 + 포트폴리오 현재가 자동 반영
+```bash
+# 로컬 실행 (Node 18+)
+node scripts/fetch-market.js                 # data.js 재생성
+node scripts/fetch-market.js --dry-run       # 파일을 쓰지 않고 결과만 출력
+node scripts/fetch-market.js --kospi 100 --kosdaq 50 --sectors 12 --top 8
+```
 
-## 포트폴리오 (로드맵)
+GitHub Actions(`update-market-data.yml`)가 **평일 15:50 KST**(장 마감 후)에 자동 실행되어
+데이터를 커밋하고 GitHub Pages에 배포한다. 수동 실행은 Actions 탭 → Run workflow.
 
-- **1단계 (현재)** — 종목/수량/평단가/현재가 수동 입력, localStorage 저장, 평가금액·손익·수익률 계산
-- **2단계** — 시황 데이터와 종목코드로 연결해 현재가 자동 채움
-- **3단계** — 매매 일지, 배당 캘린더, 자산 비중 도넛 차트
+> API 응답 형식이 바뀌어 수집이 실패하면 워크플로우가 실패로 끝나고 기존 데이터가 유지된다.
+
+## 배포 (GitHub Pages)
+
+1. 저장소 **Settings → Pages → Source**를 **GitHub Actions**로 설정
+2. `main`에 push하거나 워크플로우를 수동 실행하면 배포됨
+
+## 로드맵
+
+- [x] 1단계 — 시황 히트맵 + 포트폴리오(localStorage)
+- [x] 2단계 — 데이터 자동 수집(GitHub Actions) + Pages 배포 + 포트폴리오 현재가 자동 연동
+- [ ] 3단계 — 증권사 OpenAPI(한국투자증권 등) 실시간 연동, 매매 일지, 자산 비중 차트

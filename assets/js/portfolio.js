@@ -1,8 +1,20 @@
-/* 포트폴리오: localStorage 기반 보유 종목 관리 (1단계 — 현재가 수동 입력) */
+/* 포트폴리오: localStorage 기반 보유 종목 관리
+ * 시황 데이터(MARKET_DATA)에 있는 종목은 현재가를 자동으로 채우고 일괄 갱신할 수 있다. */
 (function () {
   "use strict";
 
   var STORAGE_KEY = "tmad.holdings.v1";
+
+  /* ---------- 시황 데이터 색인 (종목명 → {code, price}) ---------- */
+
+  var stockIndex = {};
+  if (typeof MARKET_DATA !== "undefined") {
+    MARKET_DATA.sectors.forEach(function (sector) {
+      sector.stocks.forEach(function (s) {
+        if (s.price != null) stockIndex[s.name] = { code: s.code, price: s.price };
+      });
+    });
+  }
 
   function load() {
     try {
@@ -83,14 +95,53 @@
     return div.innerHTML;
   }
 
+  /* ---------- 종목명 자동완성 + 현재가 자동 채움 ---------- */
+
+  var nameInput = document.getElementById("f-name");
+  var curInput = document.getElementById("f-cur");
+
+  var datalist = document.getElementById("stock-names");
+  Object.keys(stockIndex).sort().forEach(function (name) {
+    var opt = document.createElement("option");
+    opt.value = name;
+    datalist.appendChild(opt);
+  });
+
+  nameInput.addEventListener("change", function () {
+    var found = stockIndex[nameInput.value.trim()];
+    if (found && !curInput.value) curInput.value = found.price;
+  });
+
+  /* ---------- 시황 데이터로 현재가 일괄 갱신 ---------- */
+
+  document.getElementById("sync-btn").addEventListener("click", function () {
+    var holdings = load();
+    var updated = 0;
+    holdings.forEach(function (h) {
+      var found = stockIndex[h.name];
+      if (found) {
+        h.curPrice = found.price;
+        updated++;
+      }
+    });
+    save(holdings);
+    render();
+    var note = document.getElementById("sync-note");
+    note.textContent = updated > 0
+      ? updated + "개 종목 현재가를 시황 데이터(" + MARKET_DATA.asOf + ") 기준으로 갱신했습니다."
+      : "시황 데이터에서 일치하는 종목을 찾지 못했습니다.";
+  });
+
+  /* ---------- 추가 / 삭제 ---------- */
+
   document.getElementById("add-form").addEventListener("submit", function (e) {
     e.preventDefault();
     var holdings = load();
     holdings.push({
-      name: document.getElementById("f-name").value.trim(),
+      name: nameInput.value.trim(),
       qty: Number(document.getElementById("f-qty").value),
       avgPrice: Number(document.getElementById("f-avg").value),
-      curPrice: Number(document.getElementById("f-cur").value)
+      curPrice: Number(curInput.value)
     });
     save(holdings);
     e.target.reset();
@@ -106,5 +157,10 @@
     render();
   });
 
+  /* ---------- init ---------- */
+
+  if (typeof MARKET_DATA !== "undefined") {
+    document.getElementById("asof").textContent = "시황 기준: " + MARKET_DATA.asOf;
+  }
   render();
 })();

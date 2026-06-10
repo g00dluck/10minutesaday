@@ -182,9 +182,13 @@
 
   function showTooltip(e, stock, sectorName) {
     var cls = stock.change > 0 ? "tt-up" : stock.change < 0 ? "tt-down" : "tt-flat";
+    var priceLine = stock.price != null
+      ? '<div>' + stock.price.toLocaleString("ko-KR") + "원</div>"
+      : "";
     tooltip.innerHTML =
       '<div class="tt-sector">' + sectorName + "</div>" +
       '<div class="tt-name">' + stock.name + " <span class='tt-sector'>" + stock.code + "</span></div>" +
+      priceLine +
       '<div class="' + cls + '">' + formatChange(stock.change) + "</div>";
     tooltip.hidden = false;
 
