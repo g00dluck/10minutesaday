@@ -1,0 +1,68 @@
+name: Update market data & deploy
+
+on:
+  schedule:
+    # 평일 15:50 KST (06:50 UTC) — 장 마감(15:30) 후 갱신
+    - cron: "50 6 * * 1-5"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update-data:
+    # 사용자가 main에 push한 경우엔 데이터 갱신 없이 배포만 한다
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch market data
+        run: node scripts/fetch-market.js
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet assets/js/data.js; then
+            git add assets/js/data.js
+            git commit -m "chore: 시황 데이터 갱신"
+            git push
+          else
+            echo "변경 없음 — 커밋 생략"
+          fi
+
+  deploy:
+    needs: update-data
+    # push 이벤트면 update-data가 skipped 상태여도 배포한다
+    if: ${{ !cancelled() && (needs.update-data.result == 'success' || needs.update-data.result == 'skipped') }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # update-data가 방금 푸시한 데이터 커밋까지 포함해 최신을 받는다
+          ref: ${{ github.ref }}
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

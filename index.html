@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Minute A Day · 시황</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">10</span>
+    <h1>10 Minute A Day</h1>
+  </div>
+  <nav class="tabs">
+    <a href="index.html" class="tab active">시황</a>
+    <a href="portfolio.html" class="tab">포트폴리오</a>
+    <a href="journal.html" class="tab">매매일지</a>
+  </nav>
+  <div class="meta">
+    <span id="asof"></span>
+  </div>
+</header>
+
+<main>
+  <section class="heatmap-wrap">
+    <div id="indices" class="indices"></div>
+    <div id="heatmap" class="heatmap" aria-label="업종별 등락 히트맵"></div>
+    <div class="legend">
+      <span class="legend-label">하락</span>
+      <div class="legend-swatches" id="legend-swatches"></div>
+      <span class="legend-label">상승</span>
+      <span class="legend-mid">보합</span>
+    </div>
+  </section>
+</main>
+
+<div id="tooltip" class="tooltip" hidden></div>
+
+<div id="detail-backdrop" class="detail-backdrop" hidden>
+  <div class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="d-name">
+    <button type="button" class="detail-close" id="detail-close" aria-label="닫기">&times;</button>
+    <div class="detail-header">
+      <div class="d-title">
+        <h3 id="d-name"></h3>
+        <span class="d-sub" id="d-sub"></span>
+      </div>
+      <div class="d-price-box">
+        <span class="d-price" id="d-price"></span>
+        <span class="d-change" id="d-change"></span>
+      </div>
+    </div>
+    <div class="detail-chart">
+      <svg id="d-chart" viewBox="0 0 560 180" preserveAspectRatio="none" aria-label="최근 가격 차트"></svg>
+      <div class="d-chart-meta" id="d-chart-meta"></div>
+    </div>
+    <div class="detail-stats" id="d-stats"></div>
+    <div class="detail-position" id="d-position" hidden></div>
+    <div class="detail-links">
+      <a id="d-link-naver" target="_blank" rel="noopener">네이버 증권에서 보기 →</a>
+      <a id="d-link-toss" target="_blank" rel="noopener">토스증권에서 보기 →</a>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/common.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/heatmap.js"></script>
+<script src="assets/js/detail.js"></script>
+</body>
+</html>
