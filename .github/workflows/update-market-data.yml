@@ -2,10 +2,9 @@ name: Update market data & deploy
 
 on:
   schedule:
-    # 매일 08:00–19:55 KST, 5분 간격 (KST = UTC+9 → UTC 23:00–10:55)
-    - cron: "*/5 0-10,23 * * *"
-    # 매일 20:00 KST (11:00 UTC) 마지막 갱신
-    - cron: "0 11 * * *"
+    # 5분 간격으로 깨운 뒤 잡 안에서 운영 시간(매일 08~20시 KST)을 검사한다.
+    # 시간대를 cron에 넣으면 스케줄 등록이 누락되는 사례가 있어 단순 표기를 쓴다.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
   push:
     branches: [main]
@@ -22,17 +21,34 @@ jobs:
     # 사용자가 main에 push한 경우엔 데이터 갱신 없이 배포만 한다
     if: github.event_name != 'push'
     runs-on: ubuntu-latest
+    outputs:
+      proceed: ${{ steps.gate.outputs.proceed }}
     steps:
+      - name: 운영 시간 확인 (매일 08~20시 KST, 수동 실행은 항상 통과)
+        id: gate
+        run: |
+          hour=$(TZ=Asia/Seoul date +%-H)
+          if [ "${{ github.event_name }}" != "schedule" ] || { [ "$hour" -ge 8 ] && [ "$hour" -le 20 ]; }; then
+            echo "proceed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "proceed=false" >> "$GITHUB_OUTPUT"
+            echo "운영 시간 외(현재 ${hour}시 KST) — 갱신 생략"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.proceed == 'true'
 
       - uses: actions/setup-node@v4
+        if: steps.gate.outputs.proceed == 'true'
         with:
           node-version: 20
 
       - name: Fetch market data
+        if: steps.gate.outputs.proceed == 'true'
         run: node scripts/fetch-market.js
 
       - name: Commit & push if changed
+        if: steps.gate.outputs.proceed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -46,8 +62,9 @@ jobs:
 
   deploy:
     needs: update-data
-    # push 이벤트면 update-data가 skipped 상태여도 배포한다
-    if: ${{ !cancelled() && (needs.update-data.result == 'success' || needs.update-data.result == 'skipped') }}
+    # push 이벤트면 update-data가 skipped 상태여도 배포하고,
+    # 스케줄 실행은 운영 시간 통과(proceed=true)일 때만 배포한다
+    if: ${{ !cancelled() && (needs.update-data.result == 'skipped' || (needs.update-data.result == 'success' && needs.update-data.outputs.proceed == 'true')) }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
