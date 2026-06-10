@@ -220,20 +220,6 @@
     tooltip.hidden = true;
   }
 
-  /* ---------- legend ---------- */
-
-  function renderLegend() {
-    var wrap = document.getElementById("legend-swatches");
-    var steps = 11; // 좌(하락) → 중앙(보합) → 우(상승)
-    for (var i = 0; i < steps; i++) {
-      var change = (i / (steps - 1)) * 2 * CLAMP - CLAMP;
-      var sw = document.createElement("div");
-      sw.className = "sw";
-      sw.style.background = changeColor(change);
-      wrap.appendChild(sw);
-    }
-  }
-
   /* ---------- 지수 요약 ---------- */
 
   function renderIndices() {
@@ -255,7 +241,6 @@
 
   document.getElementById("asof").textContent = "기준: " + MARKET_DATA.asOf;
   renderIndices();
-  renderLegend();
   render();
 
   var resizeTimer;
