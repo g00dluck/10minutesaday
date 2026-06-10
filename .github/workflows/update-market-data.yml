@@ -10,11 +10,9 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: market-data
   cancel-in-progress: false
 
 jobs:
@@ -49,23 +47,16 @@ jobs:
     # push 이벤트면 update-data가 skipped 상태여도 배포한다
     if: ${{ !cancelled() && (needs.update-data.result == 'success' || needs.update-data.result == 'skipped') }}
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
         with:
           # update-data가 방금 푸시한 데이터 커밋까지 포함해 최신을 받는다
           ref: ${{ github.ref }}
 
-      - uses: actions/configure-pages@v5
-        with:
-          # 저장소에 Pages가 아직 활성화되지 않았으면 자동 활성화
-          enablement: true
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      # gh-pages 브랜치로 배포 — 브랜치가 생기면 GitHub Pages가 자동 활성화된다
+      # (Settings > Pages 의 Source 가 "Deploy from a branch: gh-pages" 로 잡힘)
+      - name: Deploy to gh-pages branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git push -f origin HEAD:gh-pages
