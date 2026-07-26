@@ -7,7 +7,7 @@
  * - price  : 현재가(원)
  */
 var MARKET_DATA = {
-  "asOf": "2026-07-26 17:43 KST",
+  "asOf": "2026-07-26 19:23 KST",
   "indices": [
     {
       "name": "코스피",
