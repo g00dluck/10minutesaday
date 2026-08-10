@@ -7,7 +7,7 @@
  * - price  : 현재가(원)
  */
 var MARKET_DATA = {
-  "asOf": "2026-08-10 15:56 KST",
+  "asOf": "2026-08-10 17:21 KST",
   "indices": [
     {
       "name": "코스피",
@@ -31,7 +31,7 @@ var MARKET_DATA = {
           "weight": 13446441,
           "change": -0.43,
           "price": 230000,
-          "volume": 16324857,
+          "volume": 16324865,
           "history": [
             {
               "d": "2026-06-29",
@@ -161,7 +161,7 @@ var MARKET_DATA = {
           "weight": 10372992,
           "change": -0.14,
           "price": 1420000,
-          "volume": 3289680,
+          "volume": 3289681,
           "history": [
             {
               "d": "2026-06-29",
@@ -291,7 +291,7 @@ var MARKET_DATA = {
           "weight": 1380078,
           "change": 1.12,
           "price": 172000,
-          "volume": 1927998,
+          "volume": 1928354,
           "history": [
             {
               "d": "2026-06-29",
@@ -681,7 +681,7 @@ var MARKET_DATA = {
           "weight": 67305,
           "change": 13.3,
           "price": 144800,
-          "volume": 1584453,
+          "volume": 1584576,
           "history": [
             {
               "d": "2026-06-29",
@@ -811,7 +811,7 @@ var MARKET_DATA = {
           "weight": 53882,
           "change": 7.61,
           "price": 70700,
-          "volume": 626114,
+          "volume": 626124,
           "history": [
             {
               "d": "2026-06-29",
@@ -941,7 +941,7 @@ var MARKET_DATA = {
           "weight": 48299,
           "change": 11.44,
           "price": 98400,
-          "volume": 1428315,
+          "volume": 1428345,
           "history": [
             {
               "d": "2026-06-29",
@@ -1727,7 +1727,7 @@ var MARKET_DATA = {
           "weight": 105682,
           "change": 0.68,
           "price": 22150,
-          "volume": 805757,
+          "volume": 805759,
           "history": [
             {
               "d": "2026-06-29",
@@ -1993,7 +1993,7 @@ var MARKET_DATA = {
           "weight": 289254,
           "change": 5.59,
           "price": 94400,
-          "volume": 1011414,
+          "volume": 1011416,
           "history": [
             {
               "d": "2026-06-29",
@@ -2123,7 +2123,7 @@ var MARKET_DATA = {
           "weight": 285923,
           "change": 1.38,
           "price": 404000,
-          "volume": 138295,
+          "volume": 138296,
           "history": [
             {
               "d": "2026-06-29",
@@ -3299,7 +3299,7 @@ var MARKET_DATA = {
           "weight": 32534,
           "change": 19.43,
           "price": 176400,
-          "volume": 162495,
+          "volume": 162501,
           "history": [
             {
               "d": "2026-06-29",
@@ -4357,7 +4357,7 @@ var MARKET_DATA = {
           "weight": 594010,
           "change": 5.01,
           "price": 1152000,
-          "volume": 191623,
+          "volume": 191624,
           "history": [
             {
               "d": "2026-06-29",
@@ -5013,7 +5013,7 @@ var MARKET_DATA = {
           "weight": 951598,
           "change": -0.31,
           "price": 1274000,
-          "volume": 612663,
+          "volume": 612678,
           "history": [
             {
               "d": "2026-06-29",
@@ -5273,7 +5273,7 @@ var MARKET_DATA = {
           "weight": 43421,
           "change": 5.36,
           "price": 115900,
-          "volume": 941622,
+          "volume": 941623,
           "history": [
             {
               "d": "2026-06-29",
@@ -5409,7 +5409,7 @@ var MARKET_DATA = {
           "weight": 312750,
           "change": 3.73,
           "price": 208500,
-          "volume": 398676,
+          "volume": 398682,
           "history": [
             {
               "d": "2026-06-29",
@@ -5799,7 +5799,7 @@ var MARKET_DATA = {
           "weight": 102960,
           "change": 4.1,
           "price": 330000,
-          "volume": 138569,
+          "volume": 138588,
           "history": [
             {
               "d": "2026-06-29",
@@ -5929,7 +5929,7 @@ var MARKET_DATA = {
           "weight": 23837,
           "change": 9.82,
           "price": 37450,
-          "volume": 854331,
+          "volume": 854348,
           "history": [
             {
               "d": "2026-06-29",
