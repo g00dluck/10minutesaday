@@ -7,7 +7,7 @@
  * - price  : 현재가(원)
  */
 var MARKET_DATA = {
-  "asOf": "2026-08-12 16:00 KST",
+  "asOf": "2026-08-12 17:18 KST",
   "indices": [
     {
       "name": "코스피",
@@ -31,7 +31,7 @@ var MARKET_DATA = {
           "weight": 14937242,
           "change": 6.68,
           "price": 255500,
-          "volume": 27102460,
+          "volume": 27102479,
           "history": [
             {
               "d": "2026-07-01",
@@ -161,7 +161,7 @@ var MARKET_DATA = {
           "weight": 10986605,
           "change": 5.54,
           "price": 1504000,
-          "volume": 4204300,
+          "volume": 4204301,
           "history": [
             {
               "d": "2026-07-01",
@@ -291,7 +291,7 @@ var MARKET_DATA = {
           "weight": 1493213,
           "change": 3.27,
           "price": 186100,
-          "volume": 3146497,
+          "volume": 3146502,
           "history": [
             {
               "d": "2026-07-01",
@@ -681,7 +681,7 @@ var MARKET_DATA = {
           "weight": 80877,
           "change": 7.14,
           "price": 174000,
-          "volume": 2629820,
+          "volume": 2629827,
           "history": [
             {
               "d": "2026-07-01",
@@ -811,7 +811,7 @@ var MARKET_DATA = {
           "weight": 54729,
           "change": 6.49,
           "price": 111500,
-          "volume": 1624953,
+          "volume": 1624955,
           "history": [
             {
               "d": "2026-07-01",
@@ -941,7 +941,7 @@ var MARKET_DATA = {
           "weight": 54415,
           "change": -0.14,
           "price": 71400,
-          "volume": 429428,
+          "volume": 429431,
           "history": [
             {
               "d": "2026-07-01",
@@ -2779,7 +2779,7 @@ var MARKET_DATA = {
           "weight": 469758,
           "change": -4.04,
           "price": 202000,
-          "volume": 926437,
+          "volume": 926438,
           "history": [
             {
               "d": "2026-07-01",
@@ -3565,7 +3565,7 @@ var MARKET_DATA = {
           "weight": 838483,
           "change": 1.61,
           "price": 409500,
-          "volume": 411558,
+          "volume": 411565,
           "history": [
             {
               "d": "2026-07-01",
@@ -5929,7 +5929,7 @@ var MARKET_DATA = {
           "weight": 23710,
           "change": -2.74,
           "price": 37250,
-          "volume": 531401,
+          "volume": 531402,
           "history": [
             {
               "d": "2026-07-01",
