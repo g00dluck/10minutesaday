@@ -7,7 +7,7 @@
  * - price  : 현재가(원)
  */
 var MARKET_DATA = {
-  "asOf": "2026-08-13 15:40 KST",
+  "asOf": "2026-08-13 17:04 KST",
   "indices": [
     {
       "name": "코스피",
@@ -31,7 +31,7 @@ var MARKET_DATA = {
           "weight": 15668027,
           "change": 4.89,
           "price": 268000,
-          "volume": 35462360,
+          "volume": 35463855,
           "history": [
             {
               "d": "2026-07-02",
@@ -161,7 +161,7 @@ var MARKET_DATA = {
           "weight": 11636743,
           "change": 5.92,
           "price": 1593000,
-          "volume": 4597212,
+          "volume": 4599305,
           "history": [
             {
               "d": "2026-07-02",
@@ -291,7 +291,7 @@ var MARKET_DATA = {
           "weight": 1506853,
           "change": 0.91,
           "price": 187800,
-          "volume": 5481514,
+          "volume": 5491249,
           "history": [
             {
               "d": "2026-07-02",
@@ -421,7 +421,7 @@ var MARKET_DATA = {
           "weight": 1473975,
           "change": 9.08,
           "price": 1117000,
-          "volume": 753631,
+          "volume": 754168,
           "history": [
             {
               "d": "2026-07-02",
@@ -551,7 +551,7 @@ var MARKET_DATA = {
           "weight": 215406,
           "change": 3.91,
           "price": 226000,
-          "volume": 744182,
+          "volume": 744192,
           "history": [
             {
               "d": "2026-07-02",
@@ -681,7 +681,7 @@ var MARKET_DATA = {
           "weight": 83341,
           "change": 3.05,
           "price": 179300,
-          "volume": 1715731,
+          "volume": 1718896,
           "history": [
             {
               "d": "2026-07-02",
@@ -811,7 +811,7 @@ var MARKET_DATA = {
           "weight": 58901,
           "change": 7.62,
           "price": 120000,
-          "volume": 1212444,
+          "volume": 1218146,
           "history": [
             {
               "d": "2026-07-02",
@@ -941,7 +941,7 @@ var MARKET_DATA = {
           "weight": 54339,
           "change": -0.14,
           "price": 71300,
-          "volume": 508948,
+          "volume": 509234,
           "history": [
             {
               "d": "2026-07-02",
@@ -1337,7 +1337,7 @@ var MARKET_DATA = {
           "weight": 359422,
           "change": 2.42,
           "price": 131000,
-          "volume": 1050263,
+          "volume": 1050264,
           "history": [
             {
               "d": "2026-07-02",
@@ -1727,7 +1727,7 @@ var MARKET_DATA = {
           "weight": 105682,
           "change": 1.84,
           "price": 22150,
-          "volume": 967895,
+          "volume": 978693,
           "history": [
             {
               "d": "2026-07-02",
@@ -1863,7 +1863,7 @@ var MARKET_DATA = {
           "weight": 520608,
           "change": 0,
           "price": 496000,
-          "volume": 401802,
+          "volume": 401809,
           "history": [
             {
               "d": "2026-07-02",
@@ -1993,7 +1993,7 @@ var MARKET_DATA = {
           "weight": 277917,
           "change": 0.67,
           "price": 90700,
-          "volume": 1257915,
+          "volume": 1258314,
           "history": [
             {
               "d": "2026-07-02",
@@ -2253,7 +2253,7 @@ var MARKET_DATA = {
           "weight": 193600,
           "change": 1.15,
           "price": 22000,
-          "volume": 4642340,
+          "volume": 4643707,
           "history": [
             {
               "d": "2026-07-02",
@@ -2649,7 +2649,7 @@ var MARKET_DATA = {
           "weight": 723990,
           "change": 0.97,
           "price": 1564000,
-          "volume": 55788,
+          "volume": 55792,
           "history": [
             {
               "d": "2026-07-02",
@@ -2779,7 +2779,7 @@ var MARKET_DATA = {
           "weight": 469887,
           "change": 0,
           "price": 202000,
-          "volume": 679100,
+          "volume": 679170,
           "history": [
             {
               "d": "2026-07-02",
@@ -2909,7 +2909,7 @@ var MARKET_DATA = {
           "weight": 100279,
           "change": -1.1,
           "price": 403000,
-          "volume": 51337,
+          "volume": 51338,
           "history": [
             {
               "d": "2026-07-02",
@@ -3429,7 +3429,7 @@ var MARKET_DATA = {
           "weight": 22463,
           "change": 0.56,
           "price": 107600,
-          "volume": 83294,
+          "volume": 83301,
           "history": [
             {
               "d": "2026-07-02",
@@ -3565,7 +3565,7 @@ var MARKET_DATA = {
           "weight": 856911,
           "change": 2.2,
           "price": 418500,
-          "volume": 590724,
+          "volume": 590756,
           "history": [
             {
               "d": "2026-07-02",
@@ -3695,7 +3695,7 @@ var MARKET_DATA = {
           "weight": 536427,
           "change": 1.33,
           "price": 137400,
-          "volume": 1035076,
+          "volume": 1035090,
           "history": [
             {
               "d": "2026-07-02",
@@ -3831,7 +3831,7 @@ var MARKET_DATA = {
           "weight": 855270,
           "change": 1.95,
           "price": 365500,
-          "volume": 321547,
+          "volume": 321608,
           "history": [
             {
               "d": "2026-07-02",
@@ -3961,7 +3961,7 @@ var MARKET_DATA = {
           "weight": 392452,
           "change": 0.31,
           "price": 487000,
-          "volume": 321334,
+          "volume": 321399,
           "history": [
             {
               "d": "2026-07-02",
@@ -4221,7 +4221,7 @@ var MARKET_DATA = {
           "weight": 24883,
           "change": 0,
           "price": 112200,
-          "volume": 397021,
+          "volume": 397055,
           "history": [
             {
               "d": "2026-07-02",
@@ -4357,7 +4357,7 @@ var MARKET_DATA = {
           "weight": 1122646,
           "change": 12.58,
           "price": 1503000,
-          "volume": 1155971,
+          "volume": 1157518,
           "history": [
             {
               "d": "2026-07-02",
@@ -4487,7 +4487,7 @@ var MARKET_DATA = {
           "weight": 145553,
           "change": 1.82,
           "price": 615000,
-          "volume": 323811,
+          "volume": 323823,
           "history": [
             {
               "d": "2026-07-02",
@@ -4617,7 +4617,7 @@ var MARKET_DATA = {
           "weight": 39637,
           "change": 1.15,
           "price": 105800,
-          "volume": 1045613,
+          "volume": 1045721,
           "history": [
             {
               "d": "2026-07-02",
@@ -4753,7 +4753,7 @@ var MARKET_DATA = {
           "weight": 611026,
           "change": 2.51,
           "price": 1185000,
-          "volume": 199906,
+          "volume": 199928,
           "history": [
             {
               "d": "2026-07-02",
@@ -4883,7 +4883,7 @@ var MARKET_DATA = {
           "weight": 184140,
           "change": 6.22,
           "price": 837000,
-          "volume": 179790,
+          "volume": 181063,
           "history": [
             {
               "d": "2026-07-02",
@@ -5013,7 +5013,7 @@ var MARKET_DATA = {
           "weight": 161094,
           "change": 0.75,
           "price": 147600,
-          "volume": 473965,
+          "volume": 476895,
           "history": [
             {
               "d": "2026-07-02",
@@ -5143,7 +5143,7 @@ var MARKET_DATA = {
           "weight": 150380,
           "change": 5.29,
           "price": 79600,
-          "volume": 536117,
+          "volume": 536123,
           "history": [
             {
               "d": "2026-07-02",
@@ -5273,7 +5273,7 @@ var MARKET_DATA = {
           "weight": 147382,
           "change": 4.93,
           "price": 151200,
-          "volume": 974829,
+          "volume": 974840,
           "history": [
             {
               "d": "2026-07-02",
@@ -5409,7 +5409,7 @@ var MARKET_DATA = {
           "weight": 321000,
           "change": 2.64,
           "price": 214000,
-          "volume": 686687,
+          "volume": 692085,
           "history": [
             {
               "d": "2026-07-02",
@@ -5539,7 +5539,7 @@ var MARKET_DATA = {
           "weight": 282970,
           "change": 0.38,
           "price": 785000,
-          "volume": 154039,
+          "volume": 154121,
           "history": [
             {
               "d": "2026-07-02",
@@ -5669,7 +5669,7 @@ var MARKET_DATA = {
           "weight": 281322,
           "change": 4.32,
           "price": 3017000,
-          "volume": 44141,
+          "volume": 45167,
           "history": [
             {
               "d": "2026-07-02",
@@ -5799,7 +5799,7 @@ var MARKET_DATA = {
           "weight": 101712,
           "change": -3.26,
           "price": 326000,
-          "volume": 208062,
+          "volume": 208349,
           "history": [
             {
               "d": "2026-07-02",
@@ -5929,7 +5929,7 @@ var MARKET_DATA = {
           "weight": 23519,
           "change": -0.81,
           "price": 36950,
-          "volume": 1131700,
+          "volume": 1132411,
           "history": [
             {
               "d": "2026-07-02",
@@ -6065,7 +6065,7 @@ var MARKET_DATA = {
           "weight": 591912,
           "change": 2.1,
           "price": 365000,
-          "volume": 501113,
+          "volume": 501146,
           "history": [
             {
               "d": "2026-07-02",
@@ -6195,7 +6195,7 @@ var MARKET_DATA = {
           "weight": 204366,
           "change": 0.64,
           "price": 1262000,
-          "volume": 55751,
+          "volume": 55753,
           "history": [
             {
               "d": "2026-07-02",
@@ -6325,7 +6325,7 @@ var MARKET_DATA = {
           "weight": 171905,
           "change": 3.74,
           "price": 113700,
-          "volume": 417478,
+          "volume": 423979,
           "history": [
             {
               "d": "2026-07-02",
@@ -6461,7 +6461,7 @@ var MARKET_DATA = {
           "weight": 400940,
           "change": 1.47,
           "price": 553000,
-          "volume": 198655,
+          "volume": 198957,
           "history": [
             {
               "d": "2026-07-02",
@@ -6591,7 +6591,7 @@ var MARKET_DATA = {
           "weight": 205737,
           "change": -0.57,
           "price": 121700,
-          "volume": 582638,
+          "volume": 582784,
           "history": [
             {
               "d": "2026-07-02",
@@ -6851,7 +6851,7 @@ var MARKET_DATA = {
           "weight": 99770,
           "change": 6.34,
           "price": 107400,
-          "volume": 941758,
+          "volume": 942502,
           "history": [
             {
               "d": "2026-07-02",
@@ -6987,7 +6987,7 @@ var MARKET_DATA = {
           "weight": 212915,
           "change": 4.25,
           "price": 38050,
-          "volume": 4018445,
+          "volume": 4018469,
           "history": [
             {
               "d": "2026-07-02",
@@ -7117,7 +7117,7 @@ var MARKET_DATA = {
           "weight": 198474,
           "change": -0.34,
           "price": 118600,
-          "volume": 359158,
+          "volume": 362102,
           "history": [
             {
               "d": "2026-07-02",
@@ -7377,7 +7377,7 @@ var MARKET_DATA = {
           "weight": 104670,
           "change": -0.7,
           "price": 28350,
-          "volume": 703690,
+          "volume": 703700,
           "history": [
             {
               "d": "2026-07-02",
@@ -7507,7 +7507,7 @@ var MARKET_DATA = {
           "weight": 82603,
           "change": -0.64,
           "price": 92500,
-          "volume": 762922,
+          "volume": 763025,
           "history": [
             {
               "d": "2026-07-02",
