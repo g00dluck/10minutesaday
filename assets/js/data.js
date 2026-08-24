@@ -7,17 +7,17 @@
  * - price  : 현재가(원)
  */
 var MARKET_DATA = {
-  "asOf": "2026-08-24 14:07 KST",
+  "asOf": "2026-08-24 14:50 KST",
   "indices": [
     {
       "name": "코스피",
-      "value": 6722.14,
-      "change": -2.76
+      "value": 6683.84,
+      "change": -3.31
     },
     {
       "name": "코스닥",
-      "value": 813.36,
-      "change": 1.42
+      "value": 811.86,
+      "change": 1.24
     }
   ],
   "sectors": [
@@ -28,10 +28,10 @@ var MARKET_DATA = {
         {
           "name": "삼성전자",
           "code": "005930",
-          "weight": 15141862,
-          "change": -7.99,
-          "price": 259000,
-          "volume": 25737626,
+          "weight": 14995705,
+          "change": -8.88,
+          "price": 256500,
+          "volume": 27992850,
           "history": [
             {
               "d": "2026-07-10",
@@ -151,17 +151,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 259000
+              "c": 256500
             }
           ]
         },
         {
           "name": "SK하이닉스",
           "code": "000660",
-          "weight": 12396455,
-          "change": -1.91,
-          "price": 1697000,
-          "volume": 3128599,
+          "weight": 12235747,
+          "change": -3.18,
+          "price": 1675000,
+          "volume": 3447212,
           "history": [
             {
               "d": "2026-07-10",
@@ -281,17 +281,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1699000
+              "c": 1675000
             }
           ]
         },
         {
           "name": "삼성전자우",
           "code": "005935",
-          "weight": 1536541,
-          "change": -7.49,
-          "price": 191500,
-          "volume": 5402194,
+          "weight": 1531727,
+          "change": -7.78,
+          "price": 190900,
+          "volume": 5860173,
           "history": [
             {
               "d": "2026-07-10",
@@ -411,17 +411,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 191500
+              "c": 190900
             }
           ]
         },
         {
           "name": "SK스퀘어",
           "code": "402340",
-          "weight": 1423460,
-          "change": -3.92,
-          "price": 1079000,
-          "volume": 358663,
+          "weight": 1406310,
+          "change": -5.08,
+          "price": 1066000,
+          "volume": 396437,
           "history": [
             {
               "d": "2026-07-10",
@@ -541,7 +541,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1081000
+              "c": 1065000
             }
           ]
         },
@@ -551,7 +551,7 @@ var MARKET_DATA = {
           "weight": 199679,
           "change": -1.87,
           "price": 209500,
-          "volume": 330424,
+          "volume": 364322,
           "history": [
             {
               "d": "2026-07-10",
@@ -678,10 +678,10 @@ var MARKET_DATA = {
         {
           "name": "주성엔지니어링",
           "code": "036930",
-          "weight": 78460,
-          "change": 0.12,
-          "price": 168800,
-          "volume": 518511,
+          "weight": 77995,
+          "change": -0.47,
+          "price": 167800,
+          "volume": 550997,
           "history": [
             {
               "d": "2026-07-10",
@@ -801,17 +801,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 168800
+              "c": 167800
             }
           ]
         },
         {
           "name": "이수페타시스",
           "code": "007660",
-          "weight": 74731,
-          "change": 2.52,
-          "price": 101800,
-          "volume": 413768,
+          "weight": 74290,
+          "change": 1.91,
+          "price": 101200,
+          "volume": 442060,
           "history": [
             {
               "d": "2026-07-10",
@@ -931,17 +931,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 101700
+              "c": 101200
             }
           ]
         },
         {
           "name": "원익IPS",
           "code": "240810",
-          "weight": 52471,
-          "change": -0.93,
-          "price": 106900,
-          "volume": 372060,
+          "weight": 52520,
+          "change": -0.83,
+          "price": 107000,
+          "volume": 405335,
           "history": [
             {
               "d": "2026-07-10",
@@ -1061,7 +1061,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 107000
+              "c": 106900
             }
           ]
         }
@@ -1074,10 +1074,10 @@ var MARKET_DATA = {
         {
           "name": "KB금융",
           "code": "105560",
-          "weight": 576368,
-          "change": -1.1,
-          "price": 162500,
-          "volume": 418203,
+          "weight": 575658,
+          "change": -1.22,
+          "price": 162300,
+          "volume": 474028,
           "history": [
             {
               "d": "2026-07-10",
@@ -1197,17 +1197,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 162500
+              "c": 162300
             }
           ]
         },
         {
           "name": "신한지주",
           "code": "055550",
-          "weight": 487289,
-          "change": -0.29,
-          "price": 103800,
-          "volume": 482769,
+          "weight": 485412,
+          "change": -0.67,
+          "price": 103400,
+          "volume": 557292,
           "history": [
             {
               "d": "2026-07-10",
@@ -1327,17 +1327,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 103600
+              "c": 103400
             }
           ]
         },
         {
           "name": "하나금융지주",
           "code": "086790",
-          "weight": 351739,
-          "change": -0.47,
-          "price": 128200,
-          "volume": 297094,
+          "weight": 350368,
+          "change": -0.85,
+          "price": 127700,
+          "volume": 328908,
           "history": [
             {
               "d": "2026-07-10",
@@ -1457,17 +1457,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 128200
+              "c": 127700
             }
           ]
         },
         {
           "name": "우리금융지주",
           "code": "316140",
-          "weight": 233353,
-          "change": 0.94,
-          "price": 32050,
-          "volume": 987849,
+          "weight": 231897,
+          "change": 0.31,
+          "price": 31850,
+          "volume": 1065727,
           "history": [
             {
               "d": "2026-07-10",
@@ -1587,17 +1587,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 32050
+              "c": 31850
             }
           ]
         },
         {
           "name": "기업은행",
           "code": "024110",
-          "weight": 160283,
-          "change": 0.5,
-          "price": 20100,
-          "volume": 683719,
+          "weight": 160681,
+          "change": 0.75,
+          "price": 20150,
+          "volume": 824952,
           "history": [
             {
               "d": "2026-07-10",
@@ -1724,10 +1724,10 @@ var MARKET_DATA = {
         {
           "name": "카카오뱅크",
           "code": "323410",
-          "weight": 102700,
-          "change": 1.06,
-          "price": 21525,
-          "volume": 351329,
+          "weight": 102342,
+          "change": 0.7,
+          "price": 21450,
+          "volume": 394326,
           "history": [
             {
               "d": "2026-07-10",
@@ -1847,7 +1847,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 21525
+              "c": 21450
             }
           ]
         }
@@ -1860,10 +1860,10 @@ var MARKET_DATA = {
         {
           "name": "HD현대중공업",
           "code": "329180",
-          "weight": 476524,
-          "change": 0.22,
-          "price": 454000,
-          "volume": 97768,
+          "weight": 478098,
+          "change": 0.55,
+          "price": 455500,
+          "volume": 115164,
           "history": [
             {
               "d": "2026-07-10",
@@ -1983,7 +1983,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 453500
+              "c": 455500
             }
           ]
         },
@@ -1993,7 +1993,7 @@ var MARKET_DATA = {
           "weight": 254323,
           "change": -1.43,
           "price": 83000,
-          "volume": 591646,
+          "volume": 659207,
           "history": [
             {
               "d": "2026-07-10",
@@ -2120,10 +2120,10 @@ var MARKET_DATA = {
         {
           "name": "HD한국조선해양",
           "code": "009540",
-          "weight": 248414,
-          "change": 0.72,
-          "price": 351000,
-          "volume": 63456,
+          "weight": 248768,
+          "change": 0.86,
+          "price": 351500,
+          "volume": 71181,
           "history": [
             {
               "d": "2026-07-10",
@@ -2243,7 +2243,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 351000
+              "c": 351500
             }
           ]
         },
@@ -2253,7 +2253,7 @@ var MARKET_DATA = {
           "weight": 176440,
           "change": -0.74,
           "price": 20050,
-          "volume": 1259538,
+          "volume": 1529523,
           "history": [
             {
               "d": "2026-07-10",
@@ -2380,10 +2380,10 @@ var MARKET_DATA = {
         {
           "name": "HD현대",
           "code": "267250",
-          "weight": 165491,
-          "change": -1.64,
-          "price": 209500,
-          "volume": 86281,
+          "weight": 166280,
+          "change": -1.17,
+          "price": 210500,
+          "volume": 100688,
           "history": [
             {
               "d": "2026-07-10",
@@ -2503,17 +2503,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 209500
+              "c": 210500
             }
           ]
         },
         {
           "name": "HD현대마린솔루션",
           "code": "443060",
-          "weight": 91909,
-          "change": 3.69,
-          "price": 205000,
-          "volume": 43198,
+          "weight": 92581,
+          "change": 4.45,
+          "price": 206500,
+          "volume": 52068,
           "history": [
             {
               "d": "2026-07-10",
@@ -2633,7 +2633,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 205500
+              "c": 206000
             }
           ]
         }
@@ -2646,10 +2646,10 @@ var MARKET_DATA = {
         {
           "name": "삼성바이오로직스",
           "code": "207940",
-          "weight": 724453,
-          "change": 0.9,
-          "price": 1565000,
-          "volume": 21437,
+          "weight": 724916,
+          "change": 0.97,
+          "price": 1566000,
+          "volume": 24597,
           "history": [
             {
               "d": "2026-07-10",
@@ -2769,17 +2769,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1565000
+              "c": 1566000
             }
           ]
         },
         {
           "name": "셀트리온",
           "code": "068270",
-          "weight": 451743,
-          "change": 0.99,
-          "price": 194200,
-          "volume": 221479,
+          "weight": 449882,
+          "change": 0.57,
+          "price": 193400,
+          "volume": 245920,
           "history": [
             {
               "d": "2026-07-10",
@@ -2899,17 +2899,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 194300
+              "c": 193500
             }
           ]
         },
         {
           "name": "삼성에피스홀딩스",
           "code": "0126Z0",
-          "weight": 91818,
-          "change": 2.5,
-          "price": 369000,
-          "volume": 35810,
+          "weight": 91445,
+          "change": 2.08,
+          "price": 367500,
+          "volume": 40222,
           "history": [
             {
               "d": "2026-07-10",
@@ -3029,17 +3029,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 369000
+              "c": 367500
             }
           ]
         },
         {
           "name": "삼천당제약",
           "code": "000250",
-          "weight": 39854,
-          "change": 0.71,
-          "price": 169900,
-          "volume": 89331,
+          "weight": 39878,
+          "change": 0.77,
+          "price": 170000,
+          "volume": 93576,
           "history": [
             {
               "d": "2026-07-10",
@@ -3159,17 +3159,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 169700
+              "c": 170000
             }
           ]
         },
         {
           "name": "리가켐바이오",
           "code": "141080",
-          "weight": 38167,
-          "change": 3.1,
-          "price": 103100,
-          "volume": 146269,
+          "weight": 37982,
+          "change": 2.6,
+          "price": 102600,
+          "volume": 159563,
           "history": [
             {
               "d": "2026-07-10",
@@ -3289,7 +3289,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 103500
+              "c": 102600
             }
           ]
         },
@@ -3299,7 +3299,7 @@ var MARKET_DATA = {
           "weight": 31095,
           "change": 10.85,
           "price": 168600,
-          "volume": 78026,
+          "volume": 87353,
           "history": [
             {
               "d": "2026-07-10",
@@ -3419,17 +3419,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 168200
+              "c": 167100
             }
           ]
         },
         {
           "name": "에스티팜",
           "code": "237690",
-          "weight": 22484,
-          "change": 8.02,
-          "price": 107700,
-          "volume": 238194,
+          "weight": 22630,
+          "change": 8.73,
+          "price": 108400,
+          "volume": 264746,
           "history": [
             {
               "d": "2026-07-10",
@@ -3549,7 +3549,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 107600
+              "c": 108300
             }
           ]
         }
@@ -3562,10 +3562,10 @@ var MARKET_DATA = {
         {
           "name": "LG에너지솔루션",
           "code": "373220",
-          "weight": 843570,
-          "change": 4.95,
-          "price": 360500,
-          "volume": 254355,
+          "weight": 841230,
+          "change": 4.66,
+          "price": 359500,
+          "volume": 288570,
           "history": [
             {
               "d": "2026-07-10",
@@ -3685,7 +3685,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 360500
+              "c": 359500
             }
           ]
         },
@@ -3695,7 +3695,7 @@ var MARKET_DATA = {
           "weight": 413404,
           "change": 7.32,
           "price": 513000,
-          "volume": 541031,
+          "volume": 580390,
           "history": [
             {
               "d": "2026-07-10",
@@ -3815,17 +3815,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 514000
+              "c": 513000
             }
           ]
         },
         {
           "name": "에코프로비엠",
           "code": "247540",
-          "weight": 112994,
-          "change": 9.38,
-          "price": 115500,
-          "volume": 460310,
+          "weight": 112896,
+          "change": 9.28,
+          "price": 115400,
+          "volume": 521126,
           "history": [
             {
               "d": "2026-07-10",
@@ -3945,17 +3945,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 115600
+              "c": 115400
             }
           ]
         },
         {
           "name": "에스피지",
           "code": "058610",
-          "weight": 20935,
-          "change": -1.15,
-          "price": 94400,
-          "volume": 199999,
+          "weight": 20780,
+          "change": -1.88,
+          "price": 93700,
+          "volume": 222556,
           "history": [
             {
               "d": "2026-07-10",
@@ -4075,7 +4075,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 94500
+              "c": 93700
             }
           ]
         }
@@ -4088,10 +4088,10 @@ var MARKET_DATA = {
         {
           "name": "현대차",
           "code": "005380",
-          "weight": 840531,
-          "change": -1.08,
-          "price": 410500,
-          "volume": 246175,
+          "weight": 839507,
+          "change": -1.2,
+          "price": 410000,
+          "volume": 278648,
           "history": [
             {
               "d": "2026-07-10",
@@ -4211,17 +4211,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 410500
+              "c": 410000
             }
           ]
         },
         {
           "name": "기아",
           "code": "000270",
-          "weight": 508708,
-          "change": -0.46,
-          "price": 130300,
-          "volume": 351930,
+          "weight": 509879,
+          "change": -0.23,
+          "price": 130600,
+          "volume": 415154,
           "history": [
             {
               "d": "2026-07-10",
@@ -4341,7 +4341,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 130300
+              "c": 130600
             }
           ]
         }
@@ -4357,7 +4357,7 @@ var MARKET_DATA = {
           "weight": 982222,
           "change": -0.08,
           "price": 1315000,
-          "volume": 392584,
+          "volume": 432362,
           "history": [
             {
               "d": "2026-07-10",
@@ -4477,17 +4477,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1318000
+              "c": 1315000
             }
           ]
         },
         {
           "name": "LG이노텍",
           "code": "011070",
-          "weight": 136086,
-          "change": 4.55,
-          "price": 575000,
-          "volume": 127485,
+          "weight": 134903,
+          "change": 3.64,
+          "price": 570000,
+          "volume": 141458,
           "history": [
             {
               "d": "2026-07-10",
@@ -4607,17 +4607,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 575000
+              "c": 570000
             }
           ]
         },
         {
           "name": "심텍",
           "code": "222800",
-          "weight": 39787,
-          "change": 6.52,
-          "price": 106200,
-          "volume": 606919,
+          "weight": 39599,
+          "change": 6.02,
+          "price": 105700,
+          "volume": 644035,
           "history": [
             {
               "d": "2026-07-10",
@@ -4737,7 +4737,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 106200
+              "c": 105900
             }
           ]
         }
@@ -4750,10 +4750,10 @@ var MARKET_DATA = {
         {
           "name": "한화에어로스페이스",
           "code": "012450",
-          "weight": 568229,
-          "change": 1.57,
-          "price": 1102000,
-          "volume": 64096,
+          "weight": 570291,
+          "change": 1.94,
+          "price": 1106000,
+          "volume": 72144,
           "history": [
             {
               "d": "2026-07-10",
@@ -4873,17 +4873,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1101000
+              "c": 1106000
             }
           ]
         },
         {
           "name": "LIG디펜스앤에어로스페이스",
           "code": "079550",
-          "weight": 155540,
-          "change": 1.73,
-          "price": 707000,
-          "volume": 94258,
+          "weight": 156420,
+          "change": 2.3,
+          "price": 711000,
+          "volume": 103200,
           "history": [
             {
               "d": "2026-07-10",
@@ -5003,17 +5003,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 707000
+              "c": 711000
             }
           ]
         },
         {
           "name": "현대로템",
           "code": "064350",
-          "weight": 145378,
-          "change": 2.38,
-          "price": 133200,
-          "volume": 220709,
+          "weight": 145268,
+          "change": 2.31,
+          "price": 133100,
+          "volume": 248817,
           "history": [
             {
               "d": "2026-07-10",
@@ -5133,7 +5133,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 133000
+              "c": 133100
             }
           ]
         },
@@ -5143,7 +5143,7 @@ var MARKET_DATA = {
           "weight": 130732,
           "change": -1.56,
           "price": 69200,
-          "volume": 223046,
+          "volume": 244798,
           "history": [
             {
               "d": "2026-07-10",
@@ -5270,10 +5270,10 @@ var MARKET_DATA = {
         {
           "name": "한국항공우주",
           "code": "047810",
-          "weight": 126035,
-          "change": -0.54,
-          "price": 129300,
-          "volume": 158409,
+          "weight": 126230,
+          "change": -0.38,
+          "price": 129500,
+          "volume": 180076,
           "history": [
             {
               "d": "2026-07-10",
@@ -5393,7 +5393,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 129300
+              "c": 129400
             }
           ]
         }
@@ -5406,10 +5406,10 @@ var MARKET_DATA = {
         {
           "name": "삼성물산",
           "code": "028260",
-          "weight": 590290,
-          "change": -7.96,
-          "price": 364000,
-          "volume": 367906,
+          "weight": 587047,
+          "change": -8.47,
+          "price": 362000,
+          "volume": 427004,
           "history": [
             {
               "d": "2026-07-10",
@@ -5529,17 +5529,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 364000
+              "c": 362000
             }
           ]
         },
         {
           "name": "두산",
           "code": "000150",
-          "weight": 175055,
-          "change": 0.28,
-          "price": 1081000,
-          "volume": 41283,
+          "weight": 175217,
+          "change": 0.37,
+          "price": 1082000,
+          "volume": 45265,
           "history": [
             {
               "d": "2026-07-10",
@@ -5659,17 +5659,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 1080000
+              "c": 1082000
             }
           ]
         },
         {
           "name": "LG",
           "code": "003550",
-          "weight": 169184,
-          "change": 3.9,
-          "price": 111900,
-          "volume": 151614,
+          "weight": 169789,
+          "change": 4.27,
+          "price": 112300,
+          "volume": 171847,
           "history": [
             {
               "d": "2026-07-10",
@@ -5789,7 +5789,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 111900
+              "c": 112200
             }
           ]
         }
@@ -5802,10 +5802,10 @@ var MARKET_DATA = {
         {
           "name": "LS ELECTRIC",
           "code": "010120",
-          "weight": 287400,
-          "change": 2.46,
-          "price": 191600,
-          "volume": 453781,
+          "weight": 286800,
+          "change": 2.25,
+          "price": 191200,
+          "volume": 486057,
           "history": [
             {
               "d": "2026-07-10",
@@ -5925,17 +5925,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 191500
+              "c": 191200
             }
           ]
         },
         {
           "name": "효성중공업",
           "code": "298040",
-          "weight": 258150,
-          "change": 1.75,
-          "price": 2768500,
-          "volume": 23215,
+          "weight": 257637,
+          "change": 1.54,
+          "price": 2763000,
+          "volume": 25690,
           "history": [
             {
               "d": "2026-07-10",
@@ -6055,17 +6055,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 2768000
+              "c": 2763000
             }
           ]
         },
         {
           "name": "HD현대일렉트릭",
           "code": "267260",
-          "weight": 257737,
-          "change": -0.42,
-          "price": 715000,
-          "volume": 48816,
+          "weight": 257377,
+          "change": -0.56,
+          "price": 714000,
+          "volume": 54448,
           "history": [
             {
               "d": "2026-07-10",
@@ -6185,7 +6185,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 715000
+              "c": 714000
             }
           ]
         },
@@ -6195,7 +6195,7 @@ var MARKET_DATA = {
           "weight": 89076,
           "change": -2.73,
           "price": 285500,
-          "volume": 223372,
+          "volume": 246123,
           "history": [
             {
               "d": "2026-07-10",
@@ -6322,10 +6322,10 @@ var MARKET_DATA = {
         {
           "name": "서진시스템",
           "code": "178320",
-          "weight": 23646,
-          "change": 2.48,
-          "price": 37150,
-          "volume": 673793,
+          "weight": 23933,
+          "change": 3.72,
+          "price": 37600,
+          "volume": 720245,
           "history": [
             {
               "d": "2026-07-10",
@@ -6445,7 +6445,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 37200
+              "c": 37600
             }
           ]
         }
@@ -6458,10 +6458,10 @@ var MARKET_DATA = {
         {
           "name": "SK",
           "code": "034730",
-          "weight": 398765,
-          "change": -6.14,
-          "price": 550000,
-          "volume": 117633,
+          "weight": 393690,
+          "change": -7.34,
+          "price": 543000,
+          "volume": 133832,
           "history": [
             {
               "d": "2026-07-10",
@@ -6581,17 +6581,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 551000
+              "c": 544000
             }
           ]
         },
         {
           "name": "SK이노베이션",
           "code": "096770",
-          "weight": 217402,
-          "change": 3.04,
-          "price": 128600,
-          "volume": 617573,
+          "weight": 217909,
+          "change": 3.29,
+          "price": 128900,
+          "volume": 655883,
           "history": [
             {
               "d": "2026-07-10",
@@ -6711,17 +6711,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 128700
+              "c": 128600
             }
           ]
         },
         {
           "name": "S-Oil",
           "code": "010950",
-          "weight": 157503,
-          "change": -0.85,
-          "price": 139900,
-          "volume": 127554,
+          "weight": 158404,
+          "change": -0.28,
+          "price": 140700,
+          "volume": 140692,
           "history": [
             {
               "d": "2026-07-10",
@@ -6841,17 +6841,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 139700
+              "c": 140700
             }
           ]
         },
         {
           "name": "GS",
           "code": "078930",
-          "weight": 106365,
-          "change": -1.46,
-          "price": 114500,
-          "volume": 307954,
+          "weight": 106644,
+          "change": -1.2,
+          "price": 114800,
+          "volume": 344145,
           "history": [
             {
               "d": "2026-07-10",
@@ -6984,10 +6984,10 @@ var MARKET_DATA = {
         {
           "name": "미래에셋증권",
           "code": "006800",
-          "weight": 193330,
-          "change": 0.14,
-          "price": 34550,
-          "volume": 605940,
+          "weight": 193051,
+          "change": 0,
+          "price": 34500,
+          "volume": 747916,
           "history": [
             {
               "d": "2026-07-10",
@@ -7107,7 +7107,7 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 34550
+              "c": 34500
             }
           ]
         },
@@ -7117,7 +7117,7 @@ var MARKET_DATA = {
           "weight": 191947,
           "change": -0.61,
           "price": 114700,
-          "volume": 146001,
+          "volume": 169270,
           "history": [
             {
               "d": "2026-07-10",
@@ -7244,10 +7244,10 @@ var MARKET_DATA = {
         {
           "name": "한국금융지주",
           "code": "071050",
-          "weight": 101867,
-          "change": -0.92,
-          "price": 182800,
-          "volume": 94454,
+          "weight": 101811,
+          "change": -0.98,
+          "price": 182700,
+          "volume": 108735,
           "history": [
             {
               "d": "2026-07-10",
@@ -7367,17 +7367,17 @@ var MARKET_DATA = {
             },
             {
               "d": "2026-08-24",
-              "c": 182900
+              "c": 182800
             }
           ]
         },
         {
           "name": "NH투자증권",
           "code": "005940",
-          "weight": 95624,
-          "change": -0.77,
-          "price": 25900,
-          "volume": 255817,
+          "weight": 95440,
+          "change": -0.96,
+          "price": 25850,
+          "volume": 290316,
           "history": [
             {
               "d": "2026-07-10",
@@ -7504,10 +7504,10 @@ var MARKET_DATA = {
         {
           "name": "삼성증권",
           "code": "016360",
-          "weight": 76709,
-          "change": -6.63,
-          "price": 85900,
-          "volume": 541368,
+          "weight": 76753,
+          "change": -6.58,
+          "price": 85950,
+          "volume": 618460,
           "history": [
             {
               "d": "2026-07-10",
